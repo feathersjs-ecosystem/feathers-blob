@@ -1,4 +1,5 @@
 import AWS from 'aws-sdk';
+import Store from 's3-blob-store'
 import feathers from 'feathers';
 import rest from 'feathers-rest';
 import bodyParser from 'body-parser';
@@ -7,13 +8,15 @@ import service from '../src';
 const s3 = new AWS.S3({
   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
   secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-  params: {
-    Bucket: 'feathers-s3'
-  }
+});
+
+const blobStore = Store({
+  client: s3,
+  bucket: 'feathers-blob-store'
 });
 
 const blobService = service({
-  Model: s3,
+  Model: blobStore
 });
 
 // Create a feathers instance.
@@ -34,4 +37,4 @@ app.use(function(error, req, res, next){
 // Start the server
 module.exports = app.listen(3030);
 
-console.log('Feathers Blob S3 service running on 127.0.0.1:3030');
+console.log('feathers-blob-store service running on 127.0.0.1:3030');

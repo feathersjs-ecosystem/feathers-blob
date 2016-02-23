@@ -1,86 +1,77 @@
 if(!global._babelPolyfill) { require('babel-polyfill'); }
 
+import { extname } from 'path';
+import crypto from 'crypto';
 import Proto from 'uberproto';
-import errors from 'feathers-errors';
-import { getBase64DataURI, parseDataURI } from 'dauria'
+//import errors from 'feathers-errors';
+import { getBase64DataURI, parseDataURI } from 'dauria';
+import fromString from 'from2-string';
+import toBuffer from 'concat-stream';
+import mimeTypes from 'mime-types';
 
-// Create the service.
 class Service {
-  constructor(options) {
+  constructor (options) {
     if (!options) {
-      throw new Error('S3 options have to be provided');
+      throw new Error('feathers-blob-store: constructor `options` must be provided');
     }
 
     if (!options.Model) {
-      throw new Error('S3 service `Model` needs to be provided');
+      throw new Error('feathers-blob-store: constructor `options.Model` must be provided');
     }
 
     this.Model = options.Model;
     this.id = options.id || 'id';
   }
 
-  extend(obj) {
+  extend (obj) {
     return Proto.extend(obj, this);
   }
 
-  get(id, params, cb) {
-    const s3Params = this._s3Params(id)
+  get (id, params, cb) {
+    const ext = extname(id);
+    const contentType = mimeTypes.lookup(ext);
 
-    this.Model.getObject(s3Params, function (err, res) {
-      if (err) { return cb(err); }
-
-      const { Body: buffer, ContentType: contentType } = res
-
+    this.Model.createReadStream({
+      key: id
+    })
+    .on('error', cb)
+    .pipe(toBuffer(function (buffer) {
       const uri = getBase64DataURI(buffer, contentType);
 
       cb(null, {
         [this.id]: id,
-        uri
+        uri,
+        size: buffer.length,
       });
-    }.bind(this))
+    }.bind(this)));
   }
 
-  update(id, body, params, cb) {
+  create (body, params, cb) {
     const { uri } = body;
+    const { buffer, MIME: contentType } = parseDataURI(uri);
+    const hash = bufferToHash(buffer);
+    const ext = mimeTypes.extension(contentType);
+    const id = `${hash}.${ext}`;
 
-    var { buffer, MIME: contentType } = parseDataURI(uri);
-
-    const s3Params = this._s3Params(id, {
-      buffer,
-      contentType
-    })
-
-    this.Model.putObject(s3Params, function (err, res) {
-      if (err) { return cb(err); }
-
+    fromBuffer(buffer)
+    .pipe(this.Model.createWriteStream({
+      key: id
+    }, function () {
       cb(null, {
         [this.id]: id,
-        uri
+        uri,
+        size: buffer.length
       });
-    }.bind(this));
+    }.bind(this)))
+    .on('error', cb);
   }
 
-  remove(id, params, cb) {
-    const s3Params = this._s3Params(id)
-
-    this.Model.deleteObject(s3Params, function (err) {
-      cb(err, null)
+  remove (id, params, cb) {
+    this.Model.remove({
+      key: id
+    }, function (err) {
+      cb(err, null);
     });
-  }
-
-  _s3Params (id, bodyParams) {
-    let s3Params = {
-      Key: id
-    }
-
-    if (bodyParams) {
-      Object.assign(s3Params, {
-        Body: bodyParams.buffer,
-        ContentType: bodyParams.contentType
-      })
-    }
-
-    return s3Params
   }
 }
 
@@ -89,3 +80,13 @@ export default function init(options) {
 }
 
 init.Service = Service;
+
+function fromBuffer (buffer) {
+  return fromString(buffer.toString());
+}
+
+function bufferToHash (buffer) {
+  const hash = crypto.createHash('sha256');
+  hash.update(buffer);
+  return hash.digest('hex');
+}

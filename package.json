@@ -1,8 +1,8 @@
 {
-  "name": "feathers-s3",
-  "description": "Feathers AWS.S3 Service",
+  "name": "feathers-blob-store",
+  "description": "Feathers `abstract-blob-store` Service",
   "version": "0.0.0",
-  "homepage": "https://github.com/ahdinosaur/feathers-s3",
+  "homepage": "https://github.com/ahdinosaur/feathers-blob-store",
   "main": "lib/",
   "keywords": [
     "feathers",
@@ -11,7 +11,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git://github.com/ahdinosaur/feathers-s3.git"
+    "url": "git://github.com/ahdinosaur/feathers-blob-store.git"
   },
   "author": {
     "name": "Feathers contributors",
@@ -20,7 +20,7 @@
   },
   "contributors": [],
   "bugs": {
-    "url": "https://github.com/ahdinosaur/feathers-s3/issues"
+    "url": "https://github.com/ahdinosaur/feathers-blob-store/issues"
   },
   "engines": {
     "node": ">= 0.12.0"
@@ -42,10 +42,14 @@
     "lib": "lib"
   },
   "dependencies": {
+    "concat-stream": "^1.5.1",
     "dauria": "^1.1.3",
-    "debug": "^2.2.0"
+    "debug": "^2.2.0",
+    "from2-string": "^1.1.0",
+    "mime-types": "^2.1.10"
   },
   "devDependencies": {
+    "abstract-blob-store": "^3.2.0",
     "aws-sdk": "^2.2.37",
     "babel-cli": "^6.5.1",
     "babel-core": "^6.5.2",
@@ -55,6 +59,7 @@
     "feathers": "^2.0.0-pre.4",
     "feathers-rest": "^1.2.2",
     "jshint": "^2.9.1",
-    "mocha": "^2.4.5"
+    "mocha": "^2.4.5",
+    "s3-blob-store": "^1.0.0"
   }
 }

@@ -1,7 +1,7 @@
 import assert from 'assert';
 import plugin from '../src';
 
-describe('feathers-s3', () => {
+describe('feathers-blob-store', () => {
   it('is CommonJS compatible', () => {
     assert.equal(typeof require('../lib'), 'function');
   });
