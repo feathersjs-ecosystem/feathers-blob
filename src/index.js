@@ -1,13 +1,11 @@
-if(!global._babelPolyfill) { require('babel-polyfill'); }
-
 import { extname } from 'path';
-import crypto from 'crypto';
 import Proto from 'uberproto';
 //import errors from 'feathers-errors';
 import { getBase64DataURI, parseDataURI } from 'dauria';
-import fromString from 'from2-string';
 import toBuffer from 'concat-stream';
 import mimeTypes from 'mime-types';
+
+import { fromBuffer, bufferToHash } from './util';
 
 class Service {
   constructor (options) {
@@ -80,13 +78,3 @@ export default function init(options) {
 }
 
 init.Service = Service;
-
-function fromBuffer (buffer) {
-  return fromString(buffer.toString());
-}
-
-function bufferToHash (buffer) {
-  const hash = crypto.createHash('sha256');
-  hash.update(buffer);
-  return hash.digest('hex');
-}
