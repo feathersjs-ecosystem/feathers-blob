@@ -1,7 +1,7 @@
 {
   "name": "feathers-blob-store",
   "description": "Feathers `abstract-blob-store` Service",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "homepage": "https://github.com/ahdinosaur/feathers-blob-store",
   "main": "lib/",
   "keywords": [

@@ -80,7 +80,7 @@ For a more complete example, see [examples/app](./examples/app.js) which can be 
 
 ## Changelog
 
-__0.2.0__
+__1.0.0__
 
 - Generalize using [`abstract-blob-store`](https://github.com/maxogden/abstract-blob-store)
 
