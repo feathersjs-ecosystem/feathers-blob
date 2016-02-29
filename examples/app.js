@@ -3,7 +3,7 @@ import Store from 's3-blob-store'
 import feathers from 'feathers';
 import rest from 'feathers-rest';
 import bodyParser from 'body-parser';
-import service from '../src';
+import BlobService from '../src';
 
 const s3 = new AWS.S3({
   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
@@ -15,7 +15,7 @@ const blobStore = Store({
   bucket: 'feathers-blob-store'
 });
 
-const blobService = service({
+const blobService = BlobService({
   Model: blobStore
 });
 

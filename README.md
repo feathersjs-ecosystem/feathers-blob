@@ -1,13 +1,13 @@
-# feathers-blob-store
+# feathers-blob
 
-[![Build Status](https://travis-ci.org/ahdinosaur/feathers-blob-store.png?branch=master)](https://travis-ci.org/ahdinosaur/feathers-blob-store)
+[![Build Status](https://travis-ci.org/ahdinosaur/feathers-blob.png?branch=master)](https://travis-ci.org/ahdinosaur/feathers-blob-store)
 
 > [Feathers](http://feathersjs.com) [`abstract blob store`](https://github.com/maxogden/abstract-blob-store) service
 
 ## Installation
 
 ```shell
-npm install feathers-blob-store --save
+npm install feathers-blob --save
 ```
 
 Also install a [`abstract-blob-store` compatible module](https://github.com/maxogden/abstract-blob-store#some-modules-that-use-this).
@@ -15,14 +15,14 @@ Also install a [`abstract-blob-store` compatible module](https://github.com/maxo
 
 ## API
 
-### `import BlobStore from 'feathers-blob-store'`
+### `import BlobService from 'feathers-blob'`
 
-### `blobStore = BlobStore(options)`
+### `blobService = BlobService(options)`
 
 - `options.Model` is an instantiated interface [that implements the `abstract-blob-store` API)
 - `options.id` is a string 'key' for the blob identifier.
 
-### `blobStore.create(body, params)`
+### `blobService.create(body, params)`
 
 where input `body` is an object with key `uri` pointing to [data URI](https://en.wikipedia.org/wiki/Data_URI_scheme) of the blob.
 
@@ -36,19 +36,19 @@ returns output 'data' of the form:
 }
 ```
 
-### `blobStore.get(id, params)`
+### `blobService.get(id, params)`
 
 returns output `data` of the same form as `create`.
 
-### `blobStore.remove(id, params)`
+### `blobService.remove(id, params)`
 
 ## Example
 
 ```js
 import { getBase64DataURI } from 'dauria';
-import BlobStore from 'feathers-blob-store';
 import AWS from 'aws-sdk';
 import S3BlobStore from 's3-blob-store';
+import BlobService from 'feathers-blob';
 
 const s3 = new AWS.S3({
   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
@@ -57,7 +57,7 @@ const s3 = new AWS.S3({
 
 const blobStore = S3BlobStore({
   client: s3,
-  bucket: 'feathers-blob-store'
+  bucket: 'feathers-blob'
 });
 
 const blobService = service({
@@ -68,7 +68,7 @@ const blob = {
   uri: getBase64DataURI(new Buffer('hello world'), 'text/plain')
 }
 
-app.service('blobs').create(blob).then(function (result) {
+blobService.create(blob).then(function (result) {
   console.log('Stored blob with id', result.id);
 }).catch(err => {
   console.error(err);

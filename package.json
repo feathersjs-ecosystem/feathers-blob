@@ -1,8 +1,8 @@
 {
-  "name": "feathers-blob-store",
+  "name": "feathers-blob",
   "description": "Feathers `abstract-blob-store` Service",
   "version": "1.0.1",
-  "homepage": "https://github.com/ahdinosaur/feathers-blob-store",
+  "homepage": "https://github.com/ahdinosaur/feathers-blob",
   "main": "lib/",
   "keywords": [
     "feathers",
@@ -11,7 +11,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git://github.com/ahdinosaur/feathers-blob-store.git"
+    "url": "git://github.com/ahdinosaur/feathers-blob.git"
   },
   "author": {
     "name": "Feathers contributors",
@@ -20,7 +20,7 @@
   },
   "contributors": [],
   "bugs": {
-    "url": "https://github.com/ahdinosaur/feathers-blob-store/issues"
+    "url": "https://github.com/ahdinosaur/feathers-blob/issues"
   },
   "engines": {
     "node": ">= 0.12.0"
