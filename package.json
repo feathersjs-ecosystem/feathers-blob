@@ -6,7 +6,14 @@
   "main": "lib/",
   "keywords": [
     "feathers",
-    "feathers-plugin"
+    "feathers-plugin",
+    "blob",
+    "abstract-blob-store",
+    "fs",
+    "s3",
+    "file",
+    "files",
+    "binary"
   ],
   "license": "MIT",
   "repository": {
