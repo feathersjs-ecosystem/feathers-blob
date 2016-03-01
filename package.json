@@ -1,6 +1,6 @@
 {
   "name": "feathers-blob",
-  "description": "Feathers `abstract-blob-store` Service",
+  "description": "Feathers blob service",
   "version": "1.0.2",
   "homepage": "https://github.com/feathersjs/feathers-blob",
   "main": "lib/",
