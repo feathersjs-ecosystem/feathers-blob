@@ -1,6 +1,6 @@
 # feathers-blob
 
-[![Build Status](https://travis-ci.org/ahdinosaur/feathers-blob.png?branch=master)](https://travis-ci.org/ahdinosaur/feathers-blob-store)
+[![Build Status](https://travis-ci.org/feathersjs/feathers-blob.png?branch=master)](https://travis-ci.org/feathersjs/feathers-blob)
 
 > [Feathers](http://feathersjs.com) [`abstract blob store`](https://github.com/maxogden/abstract-blob-store) service
 
