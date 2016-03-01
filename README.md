@@ -19,7 +19,7 @@ Also install a [`abstract-blob-store` compatible module](https://github.com/maxo
 
 ### `blobService = BlobService(options)`
 
-- `options.Model` is an instantiated interface [that implements the `abstract-blob-store` API)
+- `options.Model` is an instantiated interface [that implements the `abstract-blob-store` API](https://github.com/maxogden/abstract-blob-store#api)
 - `options.id` is a string 'key' for the blob identifier.
 
 ### `blobService.create(body, params)`
