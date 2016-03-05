@@ -1,7 +1,7 @@
 {
   "name": "feathers-blob",
   "description": "Feathers blob service",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "homepage": "https://github.com/feathersjs/feathers-blob",
   "main": "lib/",
   "keywords": [
