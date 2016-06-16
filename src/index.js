@@ -45,11 +45,11 @@ class Service {
   }
 
   create (body, params, cb) {
-    const { uri } = body;
+    let { id, uri } = body;
     const { buffer, MIME: contentType } = parseDataURI(uri);
     const hash = bufferToHash(buffer);
     const ext = mimeTypes.extension(contentType);
-    const id = `${hash}.${ext}`;
+    id = id || `${hash}.${ext}`;
 
     fromBuffer(buffer)
     .pipe(this.Model.createWriteStream({

@@ -26,6 +26,13 @@ Also install a [`abstract-blob-store` compatible module](https://github.com/maxo
 
 where input `body` is an object with key `uri` pointing to [data URI](https://en.wikipedia.org/wiki/Data_URI_scheme) of the blob.
 
+Optionally, you can specify in the `body` the blob `key` which can be the file
+path where you want to store the file, otherwise it would default to
+`${hash(content)}.${extension(contentType)}`.
+
+**Tip**: You can use feathers hooks to customize the `id`. You might not want the
+client-side to write whereever they want.
+
 returns output 'data' of the form:
 
 ```js
