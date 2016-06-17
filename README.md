@@ -85,16 +85,6 @@ blobService.create(blob).then(function (result) {
 For a more complete example, see [examples/app](./examples/app.js) which can be run with `npm run example`.
 
 
-## Changelog
-
-__1.0.0__
-
-- Generalize using [`abstract-blob-store`](https://github.com/maxogden/abstract-blob-store)
-
-__0.1.0__
-
-- Initial release for `AWS.S3` using `aws-sdk`
-
 ## License
 
 Copyright (c) 2016
