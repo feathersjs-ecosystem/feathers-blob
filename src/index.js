@@ -53,7 +53,8 @@ class Service {
 
     fromBuffer(buffer)
     .pipe(this.Model.createWriteStream({
-      key: id
+      key: id,
+      params: params.query
     }, function () {
       cb(null, {
         [this.id]: id,
