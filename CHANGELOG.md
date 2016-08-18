@@ -1,5 +1,17 @@
 # Change Log
 
+## [v1.2.0](https://github.com/feathersjs/feathers-blob/tree/v1.2.0) (2016-08-18)
+[Full Changelog](https://github.com/feathersjs/feathers-blob/compare/v1.1.0...v1.2.0)
+
+**Closed issues:**
+
+- Unable to set ACL permissions for S3 [\#7](https://github.com/feathersjs/feathers-blob/issues/7)
+- unsupported mime types [\#6](https://github.com/feathersjs/feathers-blob/issues/6)
+
+**Merged pull requests:**
+
+- Add S3 Params when uploading files. [\#8](https://github.com/feathersjs/feathers-blob/pull/8) ([silvestreh](https://github.com/silvestreh))
+
 ## [v1.1.0](https://github.com/feathersjs/feathers-blob/tree/v1.1.0) (2016-06-17)
 [Full Changelog](https://github.com/feathersjs/feathers-blob/compare/v1.0.5...v1.1.0)
 
