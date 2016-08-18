@@ -82,6 +82,16 @@ blobService.create(blob).then(function (result) {
 });
 ```
 
+Should you need to change your bucket's [options](http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#putObject-property), such as permissions, pass a `params.s3` object using a before hook.
+
+```js
+app.service('upload').before({
+  create(hook) {
+    hook.params.s3 = { ACL: 'public-read' }; // makes uploaded files public
+  }
+});
+```
+
 For a more complete example, see [examples/app](./examples/app.js) which can be run with `npm run example`.
 
 
