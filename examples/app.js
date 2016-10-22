@@ -1,5 +1,5 @@
 import AWS from 'aws-sdk';
-import Store from 's3-blob-store'
+import Store from 's3-blob-store';
 import feathers from 'feathers';
 import rest from 'feathers-rest';
 import bodyParser from 'body-parser';
@@ -7,7 +7,7 @@ import BlobService from '../src';
 
 const s3 = new AWS.S3({
   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
 });
 
 const blobStore = Store({
@@ -30,7 +30,7 @@ var app = feathers()
   .use('/blobs', blobService);
 
 // A basic error handler, just like Express
-app.use(function(error, req, res, next){
+app.use(function (error, req, res, next) {
   res.json(error);
 });
 

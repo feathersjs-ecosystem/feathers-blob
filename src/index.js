@@ -1,6 +1,6 @@
 import { extname } from 'path';
 import Proto from 'uberproto';
-//import errors from 'feathers-errors';
+// import errors from 'feathers-errors';
 import { getBase64DataURI, parseDataURI } from 'dauria';
 import toBuffer from 'concat-stream';
 import mimeTypes from 'mime-types';
@@ -39,7 +39,7 @@ class Service {
       cb(null, {
         [this.id]: id,
         uri,
-        size: buffer.length,
+        size: buffer.length
       });
     }.bind(this)));
   }
@@ -74,7 +74,7 @@ class Service {
   }
 }
 
-export default function init(options) {
+export default function init (options) {
   return new Service(options);
 }
 
