@@ -50,6 +50,7 @@ class Service {
     const hash = bufferToHash(buffer);
     const ext = mimeTypes.extension(contentType);
     id = id || `${hash}.${ext}`;
+    if(id.indexOf('.') === -1) id += '.' + ext; //attach extension if not provided
 
     fromBuffer(buffer)
     .pipe(this.Model.createWriteStream({
