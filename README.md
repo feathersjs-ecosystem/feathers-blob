@@ -72,7 +72,7 @@ const blobStore = S3BlobStore({
   bucket: 'feathers-blob'
 });
 
-const blobService = service({
+const blobService = BlobService({
   Model: blobStore
 });
 
