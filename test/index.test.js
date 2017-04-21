@@ -20,7 +20,7 @@ describe('feathers-blob-store', () => {
       Model: blobStore
     });
 
-    const content = new Buffer('hello world!');
+    const content = Buffer.from('hello world!');
     const contentHash = bufferToHash(content);
     const contentType = 'text/plain';
     const contentUri = getBase64DataURI(content, contentType);
@@ -69,7 +69,7 @@ describe('feathers-blob-store', () => {
       Model: blobStore
     });
 
-    const content = new Buffer('hello world!');
+    const content = Buffer.from('hello world!');
     const contentHash = bufferToHash(content);
     const contentType = 'text/plain';
     const contentUri = getBase64DataURI(content, contentType);
