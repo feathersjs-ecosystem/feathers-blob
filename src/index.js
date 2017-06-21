@@ -25,51 +25,56 @@ class Service {
     return Proto.extend(obj, this);
   }
 
-  get (id, params, cb) {
+  get (id) {
     const ext = extname(id);
     const contentType = mimeTypes.lookup(ext);
 
-    this.Model.createReadStream({
-      key: id
-    })
-    .on('error', cb)
-    .pipe(toBuffer(function (buffer) {
-      const uri = getBase64DataURI(buffer, contentType);
+    return new Promise((resolve, reject) => {
+      this.Model.createReadStream({
+        key: id
+      })
+      .on('error', reject)
+      .pipe(toBuffer(buffer => {
+        const uri = getBase64DataURI(buffer, contentType);
 
-      cb(null, {
-        [this.id]: id,
-        uri,
-        size: buffer.length
-      });
-    }.bind(this)));
+        resolve({
+          [this.id]: id,
+          uri,
+          size: buffer.length
+        });
+      }));
+    });
   }
 
-  create (body, params, cb) {
+  create (body, params = {}) {
     let { id, uri } = body;
     const { buffer, MIME: contentType } = parseDataURI(uri);
     const hash = bufferToHash(buffer);
     const ext = mimeTypes.extension(contentType);
+
     id = id || `${hash}.${ext}`;
 
-    fromBuffer(buffer)
-    .pipe(this.Model.createWriteStream({
-      key: id,
-      params: params.s3
-    }, function () {
-      cb(null, {
-        [this.id]: id,
-        uri,
-        size: buffer.length
-      });
-    }.bind(this)))
-    .on('error', cb);
+    return new Promise((resolve, reject) => {
+      fromBuffer(buffer)
+        .pipe(this.Model.createWriteStream({
+          key: id,
+          params: params.s3
+        }, () =>
+          resolve({
+            [this.id]: id,
+            uri,
+            size: buffer.length
+          })
+        ))
+        .on('error', reject);
+    });
   }
 
-  remove (id, params, cb) {
-    this.Model.remove({
-      key: id
-    }, function (err) {
-      cb(err, null);
+  remove (id) {
+    return new Promise((resolve, reject) => {
+      this.Model.remove({
+        key: id
+      }, error => error ? reject(error) : resolve());
     });
   }
 }

@@ -3,7 +3,6 @@ import { join } from 'path';
 import BlobService from '../src';
 import FsBlobStore from 'fs-blob-store';
 import { getBase64DataURI } from 'dauria';
-import waterfall from 'run-waterfall';
 
 import { bufferToHash } from '../src/util';
 
@@ -12,7 +11,7 @@ describe('feathers-blob-store', () => {
     assert.equal(typeof require('../lib'), 'function');
   });
 
-  it('basic functionality', done => {
+  it('basic functionality', () => {
     assert.equal(typeof BlobService, 'function', 'exports factory function');
 
     const blobStore = FsBlobStore(join(__dirname, 'blobs'));
@@ -27,41 +26,30 @@ describe('feathers-blob-store', () => {
     const contentExt = 'txt';
     const contentId = `${contentHash}.${contentExt}`;
 
-    waterfall([
-      function (cb) {
-        // test successful create
-        store.create({ uri: contentUri }, {}, cb);
-      },
-      function (res, cb) {
-        assert.equal(res.id, contentId);
-        assert.equal(res.uri, contentUri);
-        assert.equal(res.size, content.length);
+    return store.create({ uri: contentUri }).then(res => {
+      assert.equal(res.id, contentId);
+      assert.equal(res.uri, contentUri);
+      assert.equal(res.size, content.length);
 
-        // test successful get
-        store.get(contentId, {}, cb);
-      },
-      function (res, cb) {
-        assert.equal(res.id, contentId);
-        assert.equal(res.uri, contentUri);
-        assert.equal(res.size, content.length);
+      // test successful get
+      return store.get(contentId);
+    }).then(res => {
+      assert.equal(res.id, contentId);
+      assert.equal(res.uri, contentUri);
+      assert.equal(res.size, content.length);
 
-        // test successful remove
-        store.remove(contentId, {}, cb);
-      },
-      function (res, cb) {
-        assert.equal(res, null);
+      // test successful remove
+      return store.remove(contentId);
+    }).then(res => {
+      assert.equal(res, null);
 
-        // test failing get
-        store.get(contentId, {}, function (err) {
-          assert.ok(err, '.get() to non-existent id should error');
-
-          cb();
-        });
-      }
-    ], done);
+      // test failing get
+      return store.get(contentId)
+        .catch(err => assert.ok(err, '.get() to non-existent id should error'));
+    });
   });
 
-  it('basic functionality with custom id', done => {
+  it('basic functionality with custom id', () => {
     assert.equal(typeof BlobService, 'function', 'exports factory function');
 
     const blobStore = FsBlobStore(join(__dirname, 'blobs'));
@@ -76,37 +64,27 @@ describe('feathers-blob-store', () => {
     const contentExt = 'txt';
     const contentId = `custom/id/${contentHash}.${contentExt}`;
 
-    waterfall([
-      function (cb) {
-        // test successful create
-        store.create({ id: contentId, uri: contentUri }, {}, cb);
-      },
-      function (res, cb) {
-        assert.equal(res.id, contentId);
-        assert.equal(res.uri, contentUri);
-        assert.equal(res.size, content.length);
+    return store.create({ id: contentId, uri: contentUri }).then(res => {
+      assert.equal(res.id, contentId);
+      assert.equal(res.uri, contentUri);
+      assert.equal(res.size, content.length);
 
-        // test successful get
-        store.get(contentId, {}, cb);
-      },
-      function (res, cb) {
-        assert.equal(res.id, contentId);
-        assert.equal(res.uri, contentUri);
-        assert.equal(res.size, content.length);
+      // test successful get
+      return store.get(contentId);
+    }).then(res => {
+      assert.equal(res.id, contentId);
+      assert.equal(res.uri, contentUri);
+      assert.equal(res.size, content.length);
 
-        // test successful remove
-        store.remove(contentId, {}, cb);
-      },
-      function (res, cb) {
-        assert.equal(res, null);
+      // test successful remove
+      return store.remove(contentId);
+    }).then(res => {
+      assert.equal(res, null);
 
-        // test failing get
-        store.get(contentId, {}, function (err) {
-          assert.ok(err, '.get() to non-existent id should error');
-
-          cb();
-        });
-      }
-    ], done);
+      // test failing get
+      return store.get(contentId).catch(err =>
+        assert.ok(err, '.get() to non-existent id should error')
+      );
+    });
   });
 });
