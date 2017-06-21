@@ -1,5 +1,25 @@
 # Change Log
 
+## [v1.3.0](https://github.com/feathersjs/feathers-blob/tree/v1.3.0) (2017-06-21)
+[Full Changelog](https://github.com/feathersjs/feathers-blob/compare/v1.2.0...v1.3.0)
+
+**Closed issues:**
+
+- How to change upload folder dynamically? [\#21](https://github.com/feathersjs/feathers-blob/issues/21)
+- del [\#15](https://github.com/feathersjs/feathers-blob/issues/15)
+- Get this repo consistent with all other repos [\#10](https://github.com/feathersjs/feathers-blob/issues/10)
+
+**Merged pull requests:**
+
+- Refactor to use promises internally [\#23](https://github.com/feathersjs/feathers-blob/pull/23) ([daffl](https://github.com/daffl))
+- Update s3-blob-store to the latest version 🚀 [\#20](https://github.com/feathersjs/feathers-blob/pull/20) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
+- Update dauria to the latest version 🚀 [\#19](https://github.com/feathersjs/feathers-blob/pull/19) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
+- Update semistandard to the latest version 🚀 [\#17](https://github.com/feathersjs/feathers-blob/pull/17) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
+- Update dependencies to enable Greenkeeper 🌴 [\#16](https://github.com/feathersjs/feathers-blob/pull/16) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
+- Update README.md [\#14](https://github.com/feathersjs/feathers-blob/pull/14) ([bertho-zero](https://github.com/bertho-zero))
+- jshint —\> semistandard [\#12](https://github.com/feathersjs/feathers-blob/pull/12) ([corymsmith](https://github.com/corymsmith))
+- \[ci skip\] Add S3 options documentation to README [\#9](https://github.com/feathersjs/feathers-blob/pull/9) ([silvestreh](https://github.com/silvestreh))
+
 ## [v1.2.0](https://github.com/feathersjs/feathers-blob/tree/v1.2.0) (2016-08-18)
 [Full Changelog](https://github.com/feathersjs/feathers-blob/compare/v1.1.0...v1.2.0)
 
