@@ -1,5 +1,12 @@
 # Change Log
 
+## [v1.3.1](https://github.com/feathersjs/feathers-blob/tree/v1.3.1) (2017-06-30)
+[Full Changelog](https://github.com/feathersjs/feathers-blob/compare/v1.3.0...v1.3.1)
+
+**Merged pull requests:**
+
+- Reject if Model.createWriteStream returns with error [\#24](https://github.com/feathersjs/feathers-blob/pull/24) ([3bola](https://github.com/3bola))
+
 ## [v1.3.0](https://github.com/feathersjs/feathers-blob/tree/v1.3.0) (2017-06-21)
 [Full Changelog](https://github.com/feathersjs/feathers-blob/compare/v1.2.0...v1.3.0)
 
