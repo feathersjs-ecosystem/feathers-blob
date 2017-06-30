@@ -59,12 +59,14 @@ class Service {
         .pipe(this.Model.createWriteStream({
           key: id,
           params: params.s3
-        }, () =>
-          resolve({
-            [this.id]: id,
-            uri,
-            size: buffer.length
-          })
+        }, (error) =>
+          error
+            ? reject(error)
+            : resolve({
+              [this.id]: id,
+              uri,
+              size: buffer.length
+            })
         ))
         .on('error', reject);
     });
