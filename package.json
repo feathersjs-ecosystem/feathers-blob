@@ -61,7 +61,7 @@
   "dependencies": {
     "concat-stream": "^1.5.1",
     "dauria": "^2.0.0",
-    "debug": "^2.2.0",
+    "debug": "^3.0.0",
     "from2": "^2.1.1",
     "mime-types": "^2.1.10",
     "uberproto": "^1.2.0"
