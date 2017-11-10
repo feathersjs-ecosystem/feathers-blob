@@ -59,15 +59,17 @@ class Service {
         .pipe(this.Model.createWriteStream({
           key: id,
           params: params.s3
-        }, (error) =>
-          error
-            ? reject(error)
-            : resolve({
-              [this.id]: id,
-              uri,
-              size: buffer.length
-            })
-        ))
+        }, (error, modelData) => {
+          if (error) {
+            return reject(error);
+          }
+          var blobData = {
+            [this.id]: id,
+            uri,
+            size: buffer.length
+          };
+          resolve(Object.assign({}, blobData, modelData))
+        }))
         .on('error', reject);
     });
   }
