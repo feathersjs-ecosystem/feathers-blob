@@ -55,10 +55,16 @@ class Service {
     id = id || `${hash}.${ext}`;
 
     return new Promise((resolve, reject) => {
+      const { mimetype, size, extension } = body;
       fromBuffer(buffer)
         .pipe(this.Model.createWriteStream({
           key: id,
-          params: params.s3
+          params: params.s3,
+          data: {
+            mimetype,
+            size,
+            extension
+          },
         }, (error, modelData) => {
           if (error) {
             return reject(error);
