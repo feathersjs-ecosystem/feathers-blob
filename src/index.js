@@ -55,19 +55,27 @@ class Service {
     id = id || `${hash}.${ext}`;
 
     return new Promise((resolve, reject) => {
+      const { mimetype, size, extension } = body;
       fromBuffer(buffer)
         .pipe(this.Model.createWriteStream({
           key: id,
-          params: params.s3
-        }, (error) =>
-          error
-            ? reject(error)
-            : resolve({
-              [this.id]: id,
-              uri,
-              size: buffer.length
-            })
-        ))
+          params: params.s3,
+          data: {
+            mimetype,
+            size,
+            extension
+          },
+        }, (error, modelData) => {
+          if (error) {
+            return reject(error);
+          }
+          var blobData = {
+            [this.id]: id,
+            uri,
+            size: buffer.length
+          };
+          resolve(Object.assign({}, blobData, modelData))
+        }))
         .on('error', reject);
     });
   }
