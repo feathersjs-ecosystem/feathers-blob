@@ -65,6 +65,7 @@ import S3BlobStore from 's3-blob-store';
 import BlobService from 'feathers-blob';
 
 const s3 = new AWS.S3({
+  endpoint: 'https://{service}.{region}.{provider}.com',
   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
   secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
 });
