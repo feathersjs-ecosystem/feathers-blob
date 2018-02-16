@@ -76,7 +76,7 @@ class Service {
     return new Promise((resolve, reject) => {
       this.Model.remove({
         key: id
-      }, error => (error, result) ? reject(error) : resolve({ id }));
+      }, error => error ? reject(error) : resolve({ id }));
     });
   }
 }
