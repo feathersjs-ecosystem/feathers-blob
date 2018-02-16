@@ -33,16 +33,16 @@ class Service {
       this.Model.createReadStream({
         key: id
       })
-        .on('error', reject)
-        .pipe(toBuffer(buffer => {
-          const uri = getBase64DataURI(buffer, contentType);
+      .on('error', reject)
+      .pipe(toBuffer(buffer => {
+        const uri = getBase64DataURI(buffer, contentType);
 
-          resolve({
-            [this.id]: id,
-            uri,
-            size: buffer.length
-          });
-        }));
+        resolve({
+          [this.id]: id,
+          uri,
+          size: buffer.length
+        });
+      }));
     });
   }
 
