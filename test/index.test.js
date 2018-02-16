@@ -41,7 +41,7 @@ describe('feathers-blob-store', () => {
       // test successful remove
       return store.remove(contentId);
     }).then(res => {
-      assert.equal(res, null);
+      assert.deepEqual(res, {id: contentId});
 
       // test failing get
       return store.get(contentId)
@@ -79,7 +79,7 @@ describe('feathers-blob-store', () => {
       // test successful remove
       return store.remove(contentId);
     }).then(res => {
-      assert.equal(res, null);
+      assert.deepEqual(res, {id: contentId});
 
       // test failing get
       return store.get(contentId).catch(err =>
