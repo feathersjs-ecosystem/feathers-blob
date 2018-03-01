@@ -1,4 +1,5 @@
 import { extname } from 'path';
+import Proto from 'uberproto';
 // import errors from 'feathers-errors';
 import { getBase64DataURI, parseDataURI } from 'dauria';
 import toBuffer from 'concat-stream';
@@ -18,6 +19,10 @@ class Service {
 
     this.Model = options.Model;
     this.id = options.id || 'id';
+  }
+
+  extend (obj) {
+    return Proto.extend(obj, this);
   }
 
   get (id) {
