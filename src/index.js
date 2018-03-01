@@ -1,5 +1,4 @@
 import { extname } from 'path';
-import Proto from 'uberproto';
 // import errors from 'feathers-errors';
 import { getBase64DataURI, parseDataURI } from 'dauria';
 import toBuffer from 'concat-stream';
@@ -21,10 +20,6 @@ class Service {
     this.id = options.id || 'id';
   }
 
-  extend (obj) {
-    return Proto.extend(obj, this);
-  }
-
   get (id) {
     const ext = extname(id);
     const contentType = mimeTypes.lookup(ext);
@@ -33,16 +28,16 @@ class Service {
       this.Model.createReadStream({
         key: id
       })
-      .on('error', reject)
-      .pipe(toBuffer(buffer => {
-        const uri = getBase64DataURI(buffer, contentType);
+        .on('error', reject)
+        .pipe(toBuffer(buffer => {
+          const uri = getBase64DataURI(buffer, contentType);
 
-        resolve({
-          [this.id]: id,
-          uri,
-          size: buffer.length
-        });
-      }));
+          resolve({
+            [this.id]: id,
+            uri,
+            size: buffer.length
+          });
+        }));
     });
   }
 
@@ -76,7 +71,7 @@ class Service {
     return new Promise((resolve, reject) => {
       this.Model.remove({
         key: id
-      }, error => error ? reject(error) : resolve({ id }));
+      }, error => error ? reject(error) : resolve({ [this.id]: id }));
     });
   }
 }
