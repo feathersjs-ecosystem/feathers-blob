@@ -1,5 +1,12 @@
 # Change Log
 
+## [v1.4.1](https://github.com/feathersjs-ecosystem/feathers-blob/tree/v1.4.1) (2018-03-02)
+[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-blob/compare/v1.4.0...v1.4.1)
+
+**Merged pull requests:**
+
+- Implemented custom id field on remove [\#40](https://github.com/feathersjs-ecosystem/feathers-blob/pull/40) ([claustres](https://github.com/claustres))
+
 ## [v1.4.0](https://github.com/feathersjs-ecosystem/feathers-blob/tree/v1.4.0) (2018-02-16)
 [Full Changelog](https://github.com/feathersjs-ecosystem/feathers-blob/compare/v1.3.1...v1.4.0)
 
