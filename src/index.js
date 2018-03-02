@@ -4,6 +4,7 @@ import Proto from 'uberproto';
 import { getBase64DataURI, parseDataURI } from 'dauria';
 import toBuffer from 'concat-stream';
 import mimeTypes from 'mime-types';
+import fs from 'fs';
 
 import { fromBuffer, bufferToHash } from './util';
 
@@ -48,14 +49,35 @@ class Service {
 
   create (body, params = {}) {
     let { id, uri } = body;
-    const { buffer, MIME: contentType } = parseDataURI(uri);
-    const hash = bufferToHash(buffer);
-    const ext = mimeTypes.extension(contentType);
+    let file = params.file;
+    let hash, ext, stream;
+    let size = null;
+
+    if (uri) {
+      const { buffer, MIME: contentType } = parseDataURI(uri);
+      hash = bufferToHash(buffer);
+      ext = mimeTypes.extension(contentType);
+      stream = fromBuffer(buffer);
+      size = buffer.length;
+    } else if (file && file.buffer) {
+      const buffer = params.file.buffer;
+      const contentType = params.file.mimetype
+      hash = bufferToHash(buffer);
+      ext = mimeTypes.extension(contentType);
+      stream = fromBuffer(buffer);
+      size = file.size;
+    } else if (file && file.path) {
+      const contentType = params.file.mimetype
+      hash = params.file.filename;
+      ext = mimeTypes.extension(contentType);
+      stream = fs.createReadStream(params.file.path);
+      size = file.size;
+    }
 
     id = id || `${hash}.${ext}`;
 
     return new Promise((resolve, reject) => {
-      fromBuffer(buffer)
+      stream
         .pipe(this.Model.createWriteStream({
           key: id,
           params: params.s3
@@ -64,8 +86,8 @@ class Service {
             ? reject(error)
             : resolve({
               [this.id]: id,
-              uri,
-              size: buffer.length
+              uri: uri,
+              size: size,
             })
         ))
         .on('error', reject);
