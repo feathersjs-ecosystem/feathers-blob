@@ -1,6 +1,6 @@
 import { extname } from 'path';
 import Proto from 'uberproto';
-// import errors from 'feathers-errors';
+import errors from 'feathers-errors';
 import { getBase64DataURI, parseDataURI } from 'dauria';
 import toBuffer from 'concat-stream';
 import mimeTypes from 'mime-types';
@@ -47,8 +47,17 @@ class Service {
   }
 
   create (body, params = {}) {
-    let { id, uri } = body;
-    const { buffer, MIME: contentType } = parseDataURI(uri);
+    let { id, uri, buffer, contentType } = body;
+    if (uri) {
+      const result = parseDataURI(uri);
+      contentType = result.MIME;
+      buffer = result.buffer;
+    } else {
+      uri = getBase64DataURI(buffer, contentType);
+    }
+    if (!uri || !buffer || !contentType) {
+      throw new errors.BadRequest('Buffer or URI with valid content type must be provided to create a blob');
+    }
     const hash = bufferToHash(buffer);
     const ext = mimeTypes.extension(contentType);
 
