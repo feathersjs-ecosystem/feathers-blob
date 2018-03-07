@@ -1,5 +1,12 @@
 # Change Log
 
+## [v1.5.0](https://github.com/feathersjs-ecosystem/feathers-blob/tree/v1.5.0) (2018-03-07)
+[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-blob/compare/v1.4.1...v1.5.0)
+
+**Merged pull requests:**
+
+- Added support to create blob from raw buffer [\#41](https://github.com/feathersjs-ecosystem/feathers-blob/pull/41) ([claustres](https://github.com/claustres))
+
 ## [v1.4.1](https://github.com/feathersjs-ecosystem/feathers-blob/tree/v1.4.1) (2018-03-02)
 [Full Changelog](https://github.com/feathersjs-ecosystem/feathers-blob/compare/v1.4.0...v1.4.1)
 
