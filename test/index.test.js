@@ -17,7 +17,7 @@ describe('feathers-blob-store', () => {
     assert.equal(typeof require('../lib'), 'function');
   });
 
-  it('basic functionality', () => {
+  it('basic functionality with data URI', () => {
     assert.equal(typeof BlobService, 'function', 'exports factory function');
 
     const blobStore = FsBlobStore(join(__dirname, 'blobs'));
@@ -28,6 +28,39 @@ describe('feathers-blob-store', () => {
     const contentId = `${contentHash}.${contentExt}`;
 
     return store.create({ uri: contentUri }).then(res => {
+      assert.equal(res.id, contentId);
+      assert.equal(res.uri, contentUri);
+      assert.equal(res.size, content.length);
+
+      // test successful get
+      return store.get(contentId);
+    }).then(res => {
+      assert.equal(res.id, contentId);
+      assert.equal(res.uri, contentUri);
+      assert.equal(res.size, content.length);
+
+      // test successful remove
+      return store.remove(contentId);
+    }).then(res => {
+      assert.deepEqual(res, {id: contentId});
+
+      // test failing get
+      return store.get(contentId)
+        .catch(err => assert.ok(err, '.get() to non-existent id should error'));
+    });
+  });
+
+  it('basic functionality with buffer', () => {
+    assert.equal(typeof BlobService, 'function', 'exports factory function');
+
+    const blobStore = FsBlobStore(join(__dirname, 'blobs'));
+    const store = BlobService({
+      Model: blobStore
+    });
+
+    const contentId = `${contentHash}.${contentExt}`;
+
+    return store.create({ buffer: content, contentType }).then(res => {
       assert.equal(res.id, contentId);
       assert.equal(res.uri, contentUri);
       assert.equal(res.size, content.length);
