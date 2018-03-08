@@ -52,7 +52,8 @@ describe('feathers-blob-store-s3', () => {
       // test failing get
       return store.get(contentId)
         .catch(err => assert.ok(err, '.get() to non-existent id should error'));
-    });
+    })
+    .catch(err => console.log(err));
   })
   // Let enough time to process
     .timeout(20000);
