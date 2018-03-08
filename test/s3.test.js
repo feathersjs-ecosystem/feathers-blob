@@ -55,7 +55,7 @@ describe('feathers-blob-store-s3', () => {
     });
   })
   // Let enough time to process
-    .timeout(10000);
+    .timeout(20000);
 
   it('basic functionality with custom id', () => {
     assert.equal(typeof BlobService, 'function', 'exports factory function');
@@ -103,5 +103,5 @@ describe('feathers-blob-store-s3', () => {
     });
   })
   // Let enough time to process
-    .timeout(10000);
+    .timeout(20000);
 });
