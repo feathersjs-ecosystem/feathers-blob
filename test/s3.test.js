@@ -7,20 +7,14 @@ import { getBase64DataURI } from 'dauria';
 import { bufferToHash } from '../src/util';
 
 describe('feathers-blob-store-s3', () => {
-  it('is CommonJS compatible', () => {
-    assert.equal(typeof require('../lib'), 'function');
+  const s3 = new aws.S3();
+  const blobStore = FsBlobStore({
+    client: s3,
+    bucket: process.env.S3_BUCKET
   });
-
+  
   it('basic functionality', () => {
     assert.equal(typeof BlobService, 'function', 'exports factory function');
-    const s3 = new aws.S3({
-      accessKeyId: process.env.S3_ACCESS_KEY,
-      secretAccessKey: process.env.S3_SECRET_ACCESS_KEY
-    });
-    const blobStore = FsBlobStore({
-      client: s3,
-      bucket: process.env.S3_BUCKET
-    });
     const store = BlobService({
       Model: blobStore
     });
@@ -59,15 +53,6 @@ describe('feathers-blob-store-s3', () => {
 
   it('basic functionality with custom id', () => {
     assert.equal(typeof BlobService, 'function', 'exports factory function');
-
-    const s3 = new aws.S3({
-      accessKeyId: process.env.S3_ACCESS_KEY,
-      secretAccessKey: process.env.S3_SECRET_ACCESS_KEY
-    });
-    const blobStore = FsBlobStore({
-      client: s3,
-      bucket: process.env.S3_BUCKET
-    });
     const store = BlobService({
       Model: blobStore
     });
