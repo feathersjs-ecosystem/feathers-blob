@@ -12,7 +12,7 @@ describe('feathers-blob-store-s3', () => {
     client: s3,
     bucket: process.env.S3_BUCKET
   });
-  
+
   it('basic functionality', () => {
     assert.equal(typeof BlobService, 'function', 'exports factory function');
     const store = BlobService({
