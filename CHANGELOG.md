@@ -1,5 +1,18 @@
 # Change Log
 
+## [v2.0.0](https://github.com/feathersjs-ecosystem/feathers-blob/tree/v2.0.0) (2018-03-09)
+[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-blob/compare/v1.5.0...v2.0.0)
+
+**Closed issues:**
+
+- Custom ID not returned on remove [\#39](https://github.com/feathersjs-ecosystem/feathers-blob/issues/39)
+
+**Merged pull requests:**
+
+- Upgrade to Feathers v3 and latest plugin infrastructure [\#43](https://github.com/feathersjs-ecosystem/feathers-blob/pull/43) ([daffl](https://github.com/daffl))
+- Finalize S3 tests [\#42](https://github.com/feathersjs-ecosystem/feathers-blob/pull/42) ([daffl](https://github.com/daffl))
+- Added tests for S3 blob store [\#38](https://github.com/feathersjs-ecosystem/feathers-blob/pull/38) ([claustres](https://github.com/claustres))
+
 ## [v1.5.0](https://github.com/feathersjs-ecosystem/feathers-blob/tree/v1.5.0) (2018-03-07)
 [Full Changelog](https://github.com/feathersjs-ecosystem/feathers-blob/compare/v1.4.1...v1.5.0)
 
