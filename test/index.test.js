@@ -1,10 +1,11 @@
-import assert from 'assert';
-import { join } from 'path';
-import BlobService from '../src';
-import FsBlobStore from 'fs-blob-store';
-import { getBase64DataURI } from 'dauria';
+const assert = require('assert');
+const { join } = require('path');
 
-import { bufferToHash } from '../src/util';
+const BlobService = require('../lib');
+const FsBlobStore = require('fs-blob-store');
+
+const { getBase64DataURI } = require('dauria');
+const { bufferToHash } = require('../lib/util');
 
 describe('feathers-blob-store', () => {
   const content = Buffer.from('hello world!');
