@@ -1,16 +1,21 @@
-import assert from 'assert';
-import BlobService from '../src';
-import aws from 'aws-sdk';
-import FsBlobStore from 's3-blob-store';
-import { getBase64DataURI } from 'dauria';
+const assert = require('assert');
+const BlobService = require('../lib');
+const aws = require('aws-sdk');
+const FsBlobStore = require('s3-blob-store');
 
-import { bufferToHash } from '../src/util';
+const { getBase64DataURI } = require('dauria');
+const { bufferToHash } = require('../lib/util');
+const _describe = process.env.S3_BUCKET ? describe : describe.skip;
 
-describe('feathers-blob-store-s3', () => {
-  const s3 = new aws.S3();
-  const blobStore = FsBlobStore({
-    client: s3,
-    bucket: process.env.S3_BUCKET
+_describe('feathers-blob-store-s3', () => {
+  let s3, blobStore;
+
+  before(() => {
+    s3 = new aws.S3();
+    blobStore = FsBlobStore({
+      client: s3,
+      bucket: process.env.S3_BUCKET
+    });
   });
 
   it('basic functionality', () => {
