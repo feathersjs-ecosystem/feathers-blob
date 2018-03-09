@@ -47,9 +47,7 @@ describe('feathers-blob-store-s3', () => {
       return store.get(contentId)
         .catch(err => assert.ok(err, '.get() to non-existent id should error'));
     });
-  })
-  // Let enough time to process
-    .timeout(20000);
+  });
 
   it('basic functionality with custom id', () => {
     assert.equal(typeof BlobService, 'function', 'exports factory function');
@@ -86,7 +84,5 @@ describe('feathers-blob-store-s3', () => {
         assert.ok(err, '.get() to non-existent id should error')
       );
     });
-  })
-  // Let enough time to process
-    .timeout(20000);
+  });
 });
