@@ -29,7 +29,9 @@ Also install a [`abstract-blob-store` compatible module](https://github.com/maxo
 
 ### `blobService.create(body, params)`
 
-where input `body` is an object with key `uri` pointing to [data URI](https://en.wikipedia.org/wiki/Data_URI_scheme) of the blob.
+where input `body` is an object with either:
+* a key `uri` pointing to [data URI](https://en.wikipedia.org/wiki/Data_URI_scheme) of the blob,
+* a key `buffer` pointing to [raw data buffer](https://nodejs.org/api/buffer.html) of the blob along with its `contentType` (i.e. MIME type).
 
 Optionally, you can specify in the `body` the blob `id` which can be the file
 path where you want to store the file, otherwise it would default to
