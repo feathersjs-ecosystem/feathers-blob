@@ -4,6 +4,7 @@
 
 [![Build Status](https://travis-ci.org/feathersjs-ecosystem/feathers-blob.png?branch=master)](https://travis-ci.org/feathersjs-ecosystem/feathers-blob)
 [![Dependency Status](https://img.shields.io/david/feathersjs-ecosystem/feathers-blob.svg?style=flat-square)](https://david-dm.org/feathersjs-ecosystem/feathers-blob)
+[![Known Vulnerabilities](https://snyk.io/test/github/feathersjs-ecosystem/feathers-blob/badge.svg)](https://snyk.io/test/github/feathersjs-ecosystem/feathers-blob)
 [![Download Status](https://img.shields.io/npm/dm/feathers-blob.svg?style=flat-square)](https://www.npmjs.com/package/feathers-blob)
 [![Slack Status](http://slack.feathersjs.com/badge.svg)](http://slack.feathersjs.com)
 
