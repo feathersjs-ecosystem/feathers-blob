@@ -1,5 +1,15 @@
 language: node_js
 node_js:
   - node
+  - '8'
   - '6'
 sudo: false
+addons:
+  code_climate:
+    repo_token: '5cd2cb8782dd727aa497f91431a5f037d82848d396b2ee3b009ea94837b1a81e'
+notifications:
+  email: false
+before_script:
+  - npm install -g codeclimate-test-reporter
+after_script:
+  - codeclimate-test-reporter < coverage/lcov.info
