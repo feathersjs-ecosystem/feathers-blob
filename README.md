@@ -1,8 +1,9 @@
 # feathers-blob
 
 [![Greenkeeper badge](https://badges.greenkeeper.io/feathersjs-ecosystem/feathers-blob.svg)](https://greenkeeper.io/)
-
 [![Build Status](https://travis-ci.org/feathersjs-ecosystem/feathers-blob.png?branch=master)](https://travis-ci.org/feathersjs-ecosystem/feathers-blob)
+[![Code Climate](https://codeclimate.com/github/feathersjs/feathers-blob/badges/gpa.svg)](https://codeclimate.com/github/feathersjs-ecosystem/feathers-blob)
+[![Test Coverage](https://codeclimate.com/github/feathersjs/feathers-blob/badges/coverage.svg)](https://codeclimate.com/github/feathersjs-ecosystem/feathers-blob/coverage)
 [![Dependency Status](https://img.shields.io/david/feathersjs-ecosystem/feathers-blob.svg?style=flat-square)](https://david-dm.org/feathersjs-ecosystem/feathers-blob)
 [![Known Vulnerabilities](https://snyk.io/test/github/feathersjs-ecosystem/feathers-blob/badge.svg)](https://snyk.io/test/github/feathersjs-ecosystem/feathers-blob)
 [![Download Status](https://img.shields.io/npm/dm/feathers-blob.svg?style=flat-square)](https://www.npmjs.com/package/feathers-blob)
