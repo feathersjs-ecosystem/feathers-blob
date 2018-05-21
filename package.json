@@ -54,7 +54,7 @@
   },
   "dependencies": {
     "@feathersjs/errors": "^3.3.0",
-    "concat-stream": "^1.5.1",
+    "concat-stream": "^1.6.2",
     "dauria": "^2.0.0",
     "debug": "^3.1.0",
     "from2": "^2.1.1",
