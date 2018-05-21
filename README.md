@@ -2,10 +2,7 @@
 
 [![Greenkeeper badge](https://badges.greenkeeper.io/feathersjs-ecosystem/feathers-blob.svg)](https://greenkeeper.io/)
 [![Build Status](https://travis-ci.org/feathersjs-ecosystem/feathers-blob.png?branch=master)](https://travis-ci.org/feathersjs-ecosystem/feathers-blob)
-[![Code Climate](https://codeclimate.com/github/feathersjs/feathers-blob/badges/gpa.svg)](https://codeclimate.com/github/feathersjs-ecosystem/feathers-blob)
-[![Test Coverage](https://codeclimate.com/github/feathersjs/feathers-blob/badges/coverage.svg)](https://codeclimate.com/github/feathersjs-ecosystem/feathers-blob/coverage)
 [![Dependency Status](https://img.shields.io/david/feathersjs-ecosystem/feathers-blob.svg?style=flat-square)](https://david-dm.org/feathersjs-ecosystem/feathers-blob)
-[![Known Vulnerabilities](https://snyk.io/test/github/feathersjs-ecosystem/feathers-blob/badge.svg)](https://snyk.io/test/github/feathersjs-ecosystem/feathers-blob)
 [![Download Status](https://img.shields.io/npm/dm/feathers-blob.svg?style=flat-square)](https://www.npmjs.com/package/feathers-blob)
 [![Slack Status](http://slack.feathersjs.com/badge.svg)](http://slack.feathersjs.com)
 
@@ -22,7 +19,7 @@ Also install a [`abstract-blob-store` compatible module](https://github.com/maxo
 
 ## API
 
-### `import BlobService from 'feathers-blob'`
+### `const BlobService = require('feathers-blob')`
 
 ### `blobService = BlobService(options)`
 
@@ -61,10 +58,11 @@ returns output `data` of the same form as `create`.
 ## Example
 
 ```js
-import { getBase64DataURI } from 'dauria';
-import AWS from 'aws-sdk';
-import S3BlobStore from 's3-blob-store';
-import BlobService from 'feathers-blob';
+const { getBase64DataURI } = require('dauria');
+const AWS = require('aws-sdk');
+const S3BlobStore = require('s3-blob-store');
+const feathers = require('@feathersjs/feathers');
+const BlobService = require('feathers-blob');
 
 const s3 = new AWS.S3({
   endpoint: 'https://{service}.{region}.{provider}.com',
@@ -77,13 +75,17 @@ const blobStore = S3BlobStore({
   bucket: 'feathers-blob'
 });
 
-const blobService = BlobService({
-  Model: blobStore
-});
-
 const blob = {
   uri: getBase64DataURI(new Buffer('hello world'), 'text/plain')
 }
+
+const app = feathers();
+
+app.use('/upload', BlobService({
+  Model: blobStore
+}));
+
+const blobService = app.service('upload');
 
 blobService.create(blob).then(function (result) {
   console.log('Stored blob with id', result.id);
@@ -107,6 +109,6 @@ For a more complete example, see [examples/app](./examples/app.js) which can be 
 
 ## License
 
-Copyright (c) 2016
+Copyright (c) 2018
 
 Licensed under the [MIT license](LICENSE).
