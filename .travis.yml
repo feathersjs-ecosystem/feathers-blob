@@ -9,6 +9,7 @@ addons:
     repo_token: '5cd2cb8782dd727aa497f91431a5f037d82848d396b2ee3b009ea94837b1a81e'
 notifications:
   email: false
+install: npm install
 before_script:
   - npm install -g codeclimate-test-reporter
 after_script:
