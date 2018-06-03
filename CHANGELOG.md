@@ -1,5 +1,20 @@
 # Change Log
 
+## [v2.0.1](https://github.com/feathersjs-ecosystem/feathers-blob/tree/v2.0.1) (2018-06-03)
+[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-blob/compare/v2.0.0...v2.0.1)
+
+**Closed issues:**
+
+- get\(\) does not work with latest s3-blob-store \(v3.0.0\) [\#37](https://github.com/feathersjs-ecosystem/feathers-blob/issues/37)
+- How to resize an image before create it ?  [\#35](https://github.com/feathersjs-ecosystem/feathers-blob/issues/35)
+- So I need help pointing me in right direction, I would like to return a like to return a file url instead of base64 [\#18](https://github.com/feathersjs-ecosystem/feathers-blob/issues/18)
+
+**Merged pull requests:**
+
+- Update uberproto to the latest version 🚀 [\#46](https://github.com/feathersjs-ecosystem/feathers-blob/pull/46) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
+- Update dependencies and documentation to be up to date [\#45](https://github.com/feathersjs-ecosystem/feathers-blob/pull/45) ([daffl](https://github.com/daffl))
+- Update s3-blob-store to the latest version 🚀 [\#44](https://github.com/feathersjs-ecosystem/feathers-blob/pull/44) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
+
 ## [v2.0.0](https://github.com/feathersjs-ecosystem/feathers-blob/tree/v2.0.0) (2018-03-09)
 [Full Changelog](https://github.com/feathersjs-ecosystem/feathers-blob/compare/v1.5.0...v2.0.0)
 
