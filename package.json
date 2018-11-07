@@ -52,6 +52,11 @@
   "directories": {
     "lib": "lib"
   },
+  "greenkeeper": {
+    "ignore": [
+      "aws-sdk"
+    ]
+  },
   "dependencies": {
     "@feathersjs/errors": "^3.3.0",
     "concat-stream": "^1.6.2",
