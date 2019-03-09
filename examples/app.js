@@ -23,7 +23,7 @@ var app = express(feathers())
   // Turn on JSON parser for REST services
   .use(express.json())
   // Turn on URL-encoded parser for REST services
-  .use(express.urlencoded({extended: true}))
+  .use(express.urlencoded({ extended: true }))
   .use('/blobs', blobService);
 
 // A basic error handler, just like Express
