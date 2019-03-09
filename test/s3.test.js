@@ -19,7 +19,7 @@ _describe('feathers-blob-store-s3', () => {
   });
 
   it('basic functionality', () => {
-    assert.equal(typeof BlobService, 'function', 'exports factory function');
+    assert.strictEqual(typeof BlobService, 'function', 'exports factory function');
     const store = BlobService({
       Model: blobStore
     });
@@ -32,21 +32,21 @@ _describe('feathers-blob-store-s3', () => {
     const contentId = `${contentHash}.${contentExt}`;
 
     return store.create({ uri: contentUri }).then(res => {
-      assert.equal(res.id, contentId);
-      assert.equal(res.uri, contentUri);
-      assert.equal(res.size, content.length);
+      assert.strictEqual(res.id, contentId);
+      assert.strictEqual(res.uri, contentUri);
+      assert.strictEqual(res.size, content.length);
 
       // test successful get
       return store.get(contentId);
     }).then(res => {
-      assert.equal(res.id, contentId);
-      assert.equal(res.uri, contentUri);
-      assert.equal(res.size, content.length);
+      assert.strictEqual(res.id, contentId);
+      assert.strictEqual(res.uri, contentUri);
+      assert.strictEqual(res.size, content.length);
 
       // test successful remove
       return store.remove(contentId);
     }).then(res => {
-      assert.deepEqual(res, {id: contentId});
+      assert.deepStrictEqual(res, { id: contentId });
 
       // test failing get
       return store.get(contentId)
@@ -55,7 +55,7 @@ _describe('feathers-blob-store-s3', () => {
   });
 
   it('basic functionality with custom id', () => {
-    assert.equal(typeof BlobService, 'function', 'exports factory function');
+    assert.strictEqual(typeof BlobService, 'function', 'exports factory function');
     const store = BlobService({
       Model: blobStore
     });
@@ -68,21 +68,21 @@ _describe('feathers-blob-store-s3', () => {
     const contentId = `custom/id/${contentHash}.${contentExt}`;
 
     return store.create({ id: contentId, uri: contentUri }).then(res => {
-      assert.equal(res.id, contentId);
-      assert.equal(res.uri, contentUri);
-      assert.equal(res.size, content.length);
+      assert.strictEqual(res.id, contentId);
+      assert.strictEqual(res.uri, contentUri);
+      assert.strictEqual(res.size, content.length);
 
       // test successful get
       return store.get(contentId);
     }).then(res => {
-      assert.equal(res.id, contentId);
-      assert.equal(res.uri, contentUri);
-      assert.equal(res.size, content.length);
+      assert.strictEqual(res.id, contentId);
+      assert.strictEqual(res.uri, contentUri);
+      assert.strictEqual(res.size, content.length);
 
       // test successful remove
       return store.remove(contentId);
     }).then(res => {
-      assert.deepEqual(res, {id: contentId});
+      assert.deepStrictEqual(res, { id: contentId });
 
       // test failing get
       return store.get(contentId).catch(err =>
