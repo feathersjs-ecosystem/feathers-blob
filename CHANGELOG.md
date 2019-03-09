@@ -1,5 +1,30 @@
 # Change Log
 
+## [v2.1.0](https://github.com/feathersjs-ecosystem/feathers-blob/tree/v2.1.0) (2019-03-09)
+[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-blob/compare/v2.0.1...v2.1.0)
+
+**Closed issues:**
+
+- An in-range update of debug is breaking the build 🚨 [\#61](https://github.com/feathersjs-ecosystem/feathers-blob/issues/61)
+- feathers blobs service save docx with .bin  extension [\#59](https://github.com/feathersjs-ecosystem/feathers-blob/issues/59)
+- An in-range update of aws-sdk is breaking the build 🚨 [\#58](https://github.com/feathersjs-ecosystem/feathers-blob/issues/58)
+- An in-range update of aws-sdk is breaking the build 🚨 [\#55](https://github.com/feathersjs-ecosystem/feathers-blob/issues/55)
+- An in-range update of aws-sdk is breaking the build 🚨 [\#54](https://github.com/feathersjs-ecosystem/feathers-blob/issues/54)
+- An in-range update of aws-sdk is breaking the build 🚨 [\#53](https://github.com/feathersjs-ecosystem/feathers-blob/issues/53)
+- An in-range update of aws-sdk is breaking the build 🚨 [\#51](https://github.com/feathersjs-ecosystem/feathers-blob/issues/51)
+- An in-range update of aws-sdk is breaking the build 🚨 [\#50](https://github.com/feathersjs-ecosystem/feathers-blob/issues/50)
+- An in-range update of aws-sdk is breaking the build 🚨 [\#49](https://github.com/feathersjs-ecosystem/feathers-blob/issues/49)
+
+**Merged pull requests:**
+
+- Feat: use params for get operation [\#63](https://github.com/feathersjs-ecosystem/feathers-blob/pull/63) ([florianbepunkt](https://github.com/florianbepunkt))
+- Update mocha to the latest version 🚀 [\#62](https://github.com/feathersjs-ecosystem/feathers-blob/pull/62) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
+- Update concat-stream to the latest version 🚀 [\#60](https://github.com/feathersjs-ecosystem/feathers-blob/pull/60) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
+- Greenkeeper/aws sdk 2.350.0 [\#57](https://github.com/feathersjs-ecosystem/feathers-blob/pull/57) ([daffl](https://github.com/daffl))
+- Update semistandard to the latest version 🚀 [\#56](https://github.com/feathersjs-ecosystem/feathers-blob/pull/56) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
+- Greenkeeper/aws sdk 2.335.0 [\#52](https://github.com/feathersjs-ecosystem/feathers-blob/pull/52) ([daffl](https://github.com/daffl))
+- Update debug to the latest version 🚀 [\#48](https://github.com/feathersjs-ecosystem/feathers-blob/pull/48) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
+
 ## [v2.0.1](https://github.com/feathersjs-ecosystem/feathers-blob/tree/v2.0.1) (2018-06-03)
 [Full Changelog](https://github.com/feathersjs-ecosystem/feathers-blob/compare/v2.0.0...v2.0.1)
 
