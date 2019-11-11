@@ -18,7 +18,7 @@ _describe('feathers-blob-store-s3', () => {
     });
   });
 
-  it('basic functionality', () => {
+  it('service operations on S3 storage', () => {
     assert.strictEqual(typeof BlobService, 'function', 'exports factory function');
     const store = BlobService({
       Model: blobStore
@@ -54,7 +54,7 @@ _describe('feathers-blob-store-s3', () => {
     });
   });
 
-  it('basic functionality with custom id', () => {
+  it('service operations on S3 storage with custom id', () => {
     assert.strictEqual(typeof BlobService, 'function', 'exports factory function');
     const store = BlobService({
       Model: blobStore
@@ -91,7 +91,7 @@ _describe('feathers-blob-store-s3', () => {
     });
   });
 
-  it('large binary file with buffer', () => {
+  it('service operations on S3 storage with a large binary file from a buffer', () => {
     const store = BlobService({
       Model: blobStore
     });

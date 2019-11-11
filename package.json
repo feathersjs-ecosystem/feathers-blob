@@ -67,12 +67,17 @@
     "uberproto": "^2.0.0"
   },
   "devDependencies": {
+    "@feathersjs/client": "^4.3.10",
+    "@feathersjs/feathers": "^4.3.10",
+    "@feathersjs/express": "^4.3.10",
     "abstract-blob-store": "^3.2.0",
     "aws-sdk": "^2.350.0",
+    "body-parser": "^1.19.0",
     "fs-blob-store": "^5.2.1",
     "istanbul": "^1.1.0-alpha.1",
     "mocha": "^6.0.0",
     "s3-blob-store": "^3.2.0",
-    "semistandard": "^14.0.1"
+    "semistandard": "^14.0.1",
+    "superagent": "^5.1.0"
   }
 }
