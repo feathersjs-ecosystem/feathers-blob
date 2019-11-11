@@ -19,7 +19,6 @@ _describe('feathers-blob-store-s3', () => {
   });
 
   it('service operations on S3 storage', () => {
-    assert.strictEqual(typeof BlobService, 'function', 'exports factory function');
     const store = BlobService({
       Model: blobStore
     });
@@ -55,7 +54,6 @@ _describe('feathers-blob-store-s3', () => {
   });
 
   it('service operations on S3 storage with custom id', () => {
-    assert.strictEqual(typeof BlobService, 'function', 'exports factory function');
     const store = BlobService({
       Model: blobStore
     });
@@ -96,7 +94,7 @@ _describe('feathers-blob-store-s3', () => {
       Model: blobStore
     });
 
-    const content = Buffer.alloc(20 * 1024 * 1024); // 20Mb
+    const content = Buffer.alloc(0.01 * 1024 * 1024); // 20Mb
     const contentHash = bufferToHash(content);
     const contentType = 'application/octet-stream';
     const contentUri = getBase64DataURI(content, contentType);

@@ -17,23 +17,20 @@ describe('feathers-blob-store-basic', () => {
   const contentHash = bufferToHash(content);
   const contentType = 'text/plain';
   const contentUri = getBase64DataURI(content, contentType);
+  const unknownContentUri = getBase64DataURI(content);
   const contentExt = 'txt';
-  let server;
+  const contentId = `${contentHash}.${contentExt}`;
+  let blobStore, store, server;
 
   it('is CommonJS compatible', () => {
-    assert.strictEqual(typeof require('../lib'), 'function');
+    assert.strictEqual(typeof BlobService, 'function');
+    blobStore = FsBlobStore(join(__dirname, 'blobs'));
+    store = BlobService({
+      Model: blobStore
+    });
   });
 
   it('service operations with data URI', () => {
-    assert.strictEqual(typeof BlobService, 'function', 'exports factory function');
-
-    const blobStore = FsBlobStore(join(__dirname, 'blobs'));
-    const store = BlobService({
-      Model: blobStore
-    });
-
-    const contentId = `${contentHash}.${contentExt}`;
-
     return store.create({ uri: contentUri }).then(res => {
       assert.strictEqual(res.id, contentId);
       assert.strictEqual(res.uri, contentUri);
@@ -58,15 +55,6 @@ describe('feathers-blob-store-basic', () => {
   });
 
   it('service operations with buffer', () => {
-    assert.strictEqual(typeof BlobService, 'function', 'exports factory function');
-
-    const blobStore = FsBlobStore(join(__dirname, 'blobs'));
-    const store = BlobService({
-      Model: blobStore
-    });
-
-    const contentId = `${contentHash}.${contentExt}`;
-
     return store.create({ buffer: content, contentType }).then(res => {
       assert.strictEqual(res.id, contentId);
       assert.strictEqual(res.uri, contentUri);
@@ -91,49 +79,37 @@ describe('feathers-blob-store-basic', () => {
   });
 
   it('service operations with custom object id', () => {
-    assert.strictEqual(typeof BlobService, 'function', 'exports factory function');
+    const customId = `custom/id/${contentHash}.${contentExt}`;
 
-    const blobStore = FsBlobStore(join(__dirname, 'blobs'));
-    const store = BlobService({
-      Model: blobStore
-    });
-
-    const contentId = `custom/id/${contentHash}.${contentExt}`;
-
-    return store.create({ id: contentId, uri: contentUri }).then(res => {
-      assert.strictEqual(res.id, contentId);
+    return store.create({ id: customId, uri: contentUri }).then(res => {
+      assert.strictEqual(res.id, customId);
       assert.strictEqual(res.uri, contentUri);
       assert.strictEqual(res.size, content.length);
 
       // test successful get
-      return store.get(contentId);
+      return store.get(customId);
     }).then(res => {
-      assert.strictEqual(res.id, contentId);
+      assert.strictEqual(res.id, customId);
       assert.strictEqual(res.uri, contentUri);
       assert.strictEqual(res.size, content.length);
 
       // test successful remove
-      return store.remove(contentId);
+      return store.remove(customId);
     }).then(res => {
-      assert.deepStrictEqual(res, { id: contentId });
+      assert.deepStrictEqual(res, { id: customId });
 
       // test failing get
-      return store.get(contentId).catch(err =>
+      return store.get(customId).catch(err =>
         assert.ok(err, '.get() to non-existent id should error')
       );
     });
   });
 
   it('service operations with custom output id field', () => {
-    assert.strictEqual(typeof BlobService, 'function', 'exports factory function');
-
-    const blobStore = FsBlobStore(join(__dirname, 'blobs'));
     const store = BlobService({
       Model: blobStore,
       id: '_id'
     });
-
-    const contentId = `${contentHash}.${contentExt}`;
 
     return store.create({ id: contentId, uri: contentUri }).then(res => {
       assert.strictEqual(res._id, contentId);
@@ -156,6 +132,58 @@ describe('feathers-blob-store-basic', () => {
       return store.get(contentId).catch(err =>
         assert.ok(err, '.get() to non-existent id should error')
       );
+    });
+  });
+
+  it('service operations with custom extension and unrecognized mime type', () => {
+    const customId = `${contentHash}.zzz`;
+
+    return store.create({ id: customId, uri: unknownContentUri }).then(res => {
+      assert.strictEqual(res.id, customId);
+      assert.strictEqual(res.uri, unknownContentUri);
+      assert.strictEqual(res.size, content.length);
+
+      // test successful get
+      return store.get(customId);
+    }).then(res => {
+      assert.strictEqual(res.id, customId);
+      assert.strictEqual(res.uri, unknownContentUri);
+      assert.strictEqual(res.size, content.length);
+
+      // test successful remove
+      return store.remove(customId);
+    }).then(res => {
+      assert.deepStrictEqual(res, { id: customId });
+
+      // test failing get
+      return store.get(customId)
+        .catch(err => assert.ok(err, '.get() to non-existent id should error'));
+    });
+  });
+
+  it('service operations without extension and unrecognized mime type', () => {
+    const customId = `${contentHash}`;
+
+    return store.create({ id: customId, uri: unknownContentUri }).then(res => {
+      assert.strictEqual(res.id, customId);
+      assert.strictEqual(res.uri, unknownContentUri);
+      assert.strictEqual(res.size, content.length);
+
+      // test successful get
+      return store.get(customId);
+    }).then(res => {
+      assert.strictEqual(res.id, customId);
+      assert.strictEqual(res.uri, unknownContentUri);
+      assert.strictEqual(res.size, content.length);
+
+      // test successful remove
+      return store.remove(customId);
+    }).then(res => {
+      assert.deepStrictEqual(res, { id: customId });
+
+      // test failing get
+      return store.get(customId)
+        .catch(err => assert.ok(err, '.get() to non-existent id should error'));
     });
   });
 
