@@ -105,6 +105,37 @@ describe('feathers-blob-store-basic', () => {
     });
   });
 
+  it('service operations with returnBuffer=true', () => {
+    const store = BlobService({
+      Model: blobStore,
+      returnBuffer: true
+    });
+
+    return store.create({ buffer: content, contentType }).then(res => {
+      assert.strictEqual(res.id, contentId);
+      assert.strictEqual(res.buffer.equals(content), true);
+      assert.strictEqual(res.uri, undefined);
+      assert.strictEqual(res.size, content.length);
+
+      // test successful get
+      return store.get(contentId);
+    }).then(res => {
+      assert.strictEqual(res.id, contentId);
+      assert.strictEqual(res.buffer.equals(content), true);
+      assert.strictEqual(res.uri, undefined);
+      assert.strictEqual(res.size, content.length);
+
+      // test successful remove
+      return store.remove(contentId);
+    }).then(res => {
+      assert.deepStrictEqual(res, { id: contentId });
+
+      // test failing get
+      return store.get(contentId)
+        .catch(err => assert.ok(err, '.get() to non-existent id should error'));
+    });
+  });
+
   it('service operations with custom output id field', () => {
     const store = BlobService({
       Model: blobStore,
