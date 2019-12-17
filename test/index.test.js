@@ -105,11 +105,10 @@ describe('feathers-blob-store-basic', () => {
     });
   });
 
-  it('service operations with returnBuffer=true and returnUri=false', () => {
+  it('service operations with returnBuffer=true', () => {
     const store = BlobService({
       Model: blobStore,
-      returnBuffer: true,
-      returnUri: false
+      returnBuffer: true
     });
 
     return store.create({ buffer: content, contentType }).then(res => {
