@@ -1,6 +1,34 @@
-# Change Log
+# Changelog
+
+## [v2.2.0](https://github.com/feathersjs-ecosystem/feathers-blob/tree/v2.2.0) (2019-12-18)
+
+[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-blob/compare/v2.1.0...v2.2.0)
+
+**Implemented enhancements:**
+
+- Make data uri encoding optional [\#69](https://github.com/feathersjs-ecosystem/feathers-blob/issues/69)
+- Support Multipart File Upload [\#25](https://github.com/feathersjs-ecosystem/feathers-blob/issues/25)
+
+**Fixed bugs:**
+
+- Extension can be ".false" if mime type is not recognized [\#47](https://github.com/feathersjs-ecosystem/feathers-blob/issues/47)
+- feathers client resolves to service path instead of store model on get and remove [\#4](https://github.com/feathersjs-ecosystem/feathers-blob/issues/4)
+
+**Closed issues:**
+
+- docs: get does not return buffer [\#71](https://github.com/feathersjs-ecosystem/feathers-blob/issues/71)
+- Large file upload to S3 errors with TimeOut from S3 [\#67](https://github.com/feathersjs-ecosystem/feathers-blob/issues/67)
+
+**Merged pull requests:**
+
+- feat: make data uri encoding optional [\#72](https://github.com/feathersjs-ecosystem/feathers-blob/pull/72) ([florianbepunkt](https://github.com/florianbepunkt))
+- Fix comment typo [\#68](https://github.com/feathersjs-ecosystem/feathers-blob/pull/68) ([andys8](https://github.com/andys8))
+- Update s3-blob-store to the latest version 🚀 [\#66](https://github.com/feathersjs-ecosystem/feathers-blob/pull/66) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
+- Update @feathersjs/errors to the latest version 🚀 [\#65](https://github.com/feathersjs-ecosystem/feathers-blob/pull/65) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
+- Update semistandard to the latest version 🚀 [\#64](https://github.com/feathersjs-ecosystem/feathers-blob/pull/64) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
 
 ## [v2.1.0](https://github.com/feathersjs-ecosystem/feathers-blob/tree/v2.1.0) (2019-03-09)
+
 [Full Changelog](https://github.com/feathersjs-ecosystem/feathers-blob/compare/v2.0.1...v2.1.0)
 
 **Closed issues:**
@@ -26,6 +54,7 @@
 - Update debug to the latest version 🚀 [\#48](https://github.com/feathersjs-ecosystem/feathers-blob/pull/48) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
 
 ## [v2.0.1](https://github.com/feathersjs-ecosystem/feathers-blob/tree/v2.0.1) (2018-06-03)
+
 [Full Changelog](https://github.com/feathersjs-ecosystem/feathers-blob/compare/v2.0.0...v2.0.1)
 
 **Closed issues:**
@@ -41,6 +70,7 @@
 - Update s3-blob-store to the latest version 🚀 [\#44](https://github.com/feathersjs-ecosystem/feathers-blob/pull/44) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
 
 ## [v2.0.0](https://github.com/feathersjs-ecosystem/feathers-blob/tree/v2.0.0) (2018-03-09)
+
 [Full Changelog](https://github.com/feathersjs-ecosystem/feathers-blob/compare/v1.5.0...v2.0.0)
 
 **Closed issues:**
@@ -54,6 +84,7 @@
 - Added tests for S3 blob store [\#38](https://github.com/feathersjs-ecosystem/feathers-blob/pull/38) ([claustres](https://github.com/claustres))
 
 ## [v1.5.0](https://github.com/feathersjs-ecosystem/feathers-blob/tree/v1.5.0) (2018-03-07)
+
 [Full Changelog](https://github.com/feathersjs-ecosystem/feathers-blob/compare/v1.4.1...v1.5.0)
 
 **Merged pull requests:**
@@ -61,6 +92,7 @@
 - Added support to create blob from raw buffer [\#41](https://github.com/feathersjs-ecosystem/feathers-blob/pull/41) ([claustres](https://github.com/claustres))
 
 ## [v1.4.1](https://github.com/feathersjs-ecosystem/feathers-blob/tree/v1.4.1) (2018-03-02)
+
 [Full Changelog](https://github.com/feathersjs-ecosystem/feathers-blob/compare/v1.4.0...v1.4.1)
 
 **Merged pull requests:**
@@ -68,6 +100,7 @@
 - Implemented custom id field on remove [\#40](https://github.com/feathersjs-ecosystem/feathers-blob/pull/40) ([claustres](https://github.com/claustres))
 
 ## [v1.4.0](https://github.com/feathersjs-ecosystem/feathers-blob/tree/v1.4.0) (2018-02-16)
+
 [Full Changelog](https://github.com/feathersjs-ecosystem/feathers-blob/compare/v1.3.1...v1.4.0)
 
 **Closed issues:**
@@ -86,6 +119,7 @@
 - Update debug to the latest version 🚀 [\#26](https://github.com/feathersjs-ecosystem/feathers-blob/pull/26) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
 
 ## [v1.3.1](https://github.com/feathersjs-ecosystem/feathers-blob/tree/v1.3.1) (2017-06-30)
+
 [Full Changelog](https://github.com/feathersjs-ecosystem/feathers-blob/compare/v1.3.0...v1.3.1)
 
 **Merged pull requests:**
@@ -93,6 +127,7 @@
 - Reject if Model.createWriteStream returns with error [\#24](https://github.com/feathersjs-ecosystem/feathers-blob/pull/24) ([3bola](https://github.com/3bola))
 
 ## [v1.3.0](https://github.com/feathersjs-ecosystem/feathers-blob/tree/v1.3.0) (2017-06-21)
+
 [Full Changelog](https://github.com/feathersjs-ecosystem/feathers-blob/compare/v1.2.0...v1.3.0)
 
 **Closed issues:**
@@ -113,6 +148,7 @@
 - \[ci skip\] Add S3 options documentation to README [\#9](https://github.com/feathersjs-ecosystem/feathers-blob/pull/9) ([silvestreh](https://github.com/silvestreh))
 
 ## [v1.2.0](https://github.com/feathersjs-ecosystem/feathers-blob/tree/v1.2.0) (2016-08-18)
+
 [Full Changelog](https://github.com/feathersjs-ecosystem/feathers-blob/compare/v1.1.0...v1.2.0)
 
 **Closed issues:**
@@ -125,6 +161,7 @@
 - Add S3 Params when uploading files. [\#8](https://github.com/feathersjs-ecosystem/feathers-blob/pull/8) ([silvestreh](https://github.com/silvestreh))
 
 ## [v1.1.0](https://github.com/feathersjs-ecosystem/feathers-blob/tree/v1.1.0) (2016-06-17)
+
 [Full Changelog](https://github.com/feathersjs-ecosystem/feathers-blob/compare/v1.0.5...v1.1.0)
 
 **Closed issues:**
@@ -136,6 +173,7 @@
 - allow custom blob key [\#3](https://github.com/feathersjs-ecosystem/feathers-blob/pull/3) ([mcchrish](https://github.com/mcchrish))
 
 ## [v1.0.5](https://github.com/feathersjs-ecosystem/feathers-blob/tree/v1.0.5) (2016-04-03)
+
 [Full Changelog](https://github.com/feathersjs-ecosystem/feathers-blob/compare/v1.0.4...v1.0.5)
 
 **Merged pull requests:**
@@ -143,21 +181,29 @@
 - don't convert buffer to string [\#1](https://github.com/feathersjs-ecosystem/feathers-blob/pull/1) ([ahdinosaur](https://github.com/ahdinosaur))
 
 ## [v1.0.4](https://github.com/feathersjs-ecosystem/feathers-blob/tree/v1.0.4) (2016-03-05)
+
 [Full Changelog](https://github.com/feathersjs-ecosystem/feathers-blob/compare/v1.0.3...v1.0.4)
 
 ## [v1.0.3](https://github.com/feathersjs-ecosystem/feathers-blob/tree/v1.0.3) (2016-03-01)
+
 [Full Changelog](https://github.com/feathersjs-ecosystem/feathers-blob/compare/v1.0.2...v1.0.3)
 
 ## [v1.0.2](https://github.com/feathersjs-ecosystem/feathers-blob/tree/v1.0.2) (2016-02-29)
+
 [Full Changelog](https://github.com/feathersjs-ecosystem/feathers-blob/compare/1.0.1...v1.0.2)
 
 ## [1.0.1](https://github.com/feathersjs-ecosystem/feathers-blob/tree/1.0.1) (2016-02-29)
+
 [Full Changelog](https://github.com/feathersjs-ecosystem/feathers-blob/compare/v1.0.1...1.0.1)
 
 ## [v1.0.1](https://github.com/feathersjs-ecosystem/feathers-blob/tree/v1.0.1) (2016-02-29)
+
 [Full Changelog](https://github.com/feathersjs-ecosystem/feathers-blob/compare/1.0.0...v1.0.1)
 
 ## [1.0.0](https://github.com/feathersjs-ecosystem/feathers-blob/tree/1.0.0) (2016-02-23)
 
+[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-blob/compare/a5e0f834e358790c244a410d707930387f38a8a6...1.0.0)
 
-\* *This Change Log was automatically generated by [github_changelog_generator](https://github.com/skywinder/Github-Changelog-Generator)*
+
+
+\* *This Changelog was automatically generated by [github_changelog_generator](https://github.com/skywinder/Github-Changelog-Generator)*
