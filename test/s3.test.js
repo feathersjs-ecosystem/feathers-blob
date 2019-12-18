@@ -18,7 +18,7 @@ _describe('feathers-blob-store-s3', () => {
     });
   });
 
-  it('service operations on S3 storage', () => {
+  it('service operations on S3 storage', async () => {
     const store = BlobService({
       Model: blobStore
     });
@@ -30,30 +30,30 @@ _describe('feathers-blob-store-s3', () => {
     const contentExt = 'txt';
     const contentId = `${contentHash}.${contentExt}`;
 
-    return store.create({ uri: contentUri }).then(res => {
-      assert.strictEqual(res.id, contentId);
-      assert.strictEqual(res.uri, contentUri);
-      assert.strictEqual(res.size, content.length);
+    let res = await store.create({ uri: contentUri });
+    assert.strictEqual(res.id, contentId);
+    assert.strictEqual(res.uri, contentUri);
+    assert.strictEqual(res.size, content.length);
 
-      // test successful get
-      return store.get(contentId);
-    }).then(res => {
-      assert.strictEqual(res.id, contentId);
-      assert.strictEqual(res.uri, contentUri);
-      assert.strictEqual(res.size, content.length);
+    // test successful get
+    res = await store.get(contentId);
+    assert.strictEqual(res.id, contentId);
+    assert.strictEqual(res.uri, contentUri);
+    assert.strictEqual(res.size, content.length);
 
-      // test successful remove
-      return store.remove(contentId);
-    }).then(res => {
-      assert.deepStrictEqual(res, { id: contentId });
+    // test successful remove
+    res = await store.remove(contentId);
+    assert.deepStrictEqual(res, { id: contentId });
 
+    try {
       // test failing get
-      return store.get(contentId)
-        .catch(err => assert.ok(err, '.get() to non-existent id should error'));
-    });
+      await store.get(contentId);
+    } catch (err) {
+      assert.ok(err, '.get() to non-existent id should error');
+    }
   });
 
-  it('service operations on S3 storage with custom id', () => {
+  it('service operations on S3 storage with custom id', async () => {
     const store = BlobService({
       Model: blobStore
     });
@@ -65,31 +65,30 @@ _describe('feathers-blob-store-s3', () => {
     const contentExt = 'txt';
     const contentId = `custom/id/${contentHash}.${contentExt}`;
 
-    return store.create({ id: contentId, uri: contentUri }).then(res => {
-      assert.strictEqual(res.id, contentId);
-      assert.strictEqual(res.uri, contentUri);
-      assert.strictEqual(res.size, content.length);
+    let res = await store.create({ id: contentId, uri: contentUri });
+    assert.strictEqual(res.id, contentId);
+    assert.strictEqual(res.uri, contentUri);
+    assert.strictEqual(res.size, content.length);
 
-      // test successful get
-      return store.get(contentId);
-    }).then(res => {
-      assert.strictEqual(res.id, contentId);
-      assert.strictEqual(res.uri, contentUri);
-      assert.strictEqual(res.size, content.length);
+    // test successful get
+    res = await store.get(contentId);
+    assert.strictEqual(res.id, contentId);
+    assert.strictEqual(res.uri, contentUri);
+    assert.strictEqual(res.size, content.length);
 
-      // test successful remove
-      return store.remove(contentId);
-    }).then(res => {
-      assert.deepStrictEqual(res, { id: contentId });
+    // test successful remove
+    res = await store.remove(contentId);
+    assert.deepStrictEqual(res, { id: contentId });
 
+    try {
       // test failing get
-      return store.get(contentId).catch(err =>
-        assert.ok(err, '.get() to non-existent id should error')
-      );
-    });
+      await store.get(contentId);
+    } catch (err) {
+      assert.ok(err, '.get() to non-existent id should error');
+    }
   });
 
-  it('service operations on S3 storage with a large binary file from a buffer', () => {
+  it('service operations on S3 storage with a large binary file from a buffer', async () => {
     const store = BlobService({
       Model: blobStore
     });
@@ -101,26 +100,26 @@ _describe('feathers-blob-store-s3', () => {
     const contentExt = 'bin';
     const contentId = `${contentHash}.${contentExt}`;
 
-    return store.create({ buffer: content, contentType }).then(res => {
-      assert.strictEqual(res.id, contentId);
-      assert.strictEqual(res.uri, contentUri);
-      assert.strictEqual(res.size, content.length);
+    let res = await store.create({ buffer: content, contentType });
+    assert.strictEqual(res.id, contentId);
+    assert.strictEqual(res.uri, contentUri);
+    assert.strictEqual(res.size, content.length);
 
-      // test successful get
-      return store.get(contentId);
-    }).then(res => {
-      assert.strictEqual(res.id, contentId);
-      assert.strictEqual(res.uri, contentUri);
-      assert.strictEqual(res.size, content.length);
+    // test successful get
+    res = await store.get(contentId);
+    assert.strictEqual(res.id, contentId);
+    assert.strictEqual(res.uri, contentUri);
+    assert.strictEqual(res.size, content.length);
 
-      // test successful remove
-      return store.remove(contentId);
-    }).then(res => {
-      assert.deepStrictEqual(res, { id: contentId });
+    // test successful remove
+    res = await store.remove(contentId);
+    assert.deepStrictEqual(res, { id: contentId });
 
+    try {
       // test failing get
-      return store.get(contentId)
-        .catch(err => assert.ok(err, '.get() to non-existent id should error'));
-    });
+      await store.get(contentId);
+    } catch (err) {
+      assert.ok(err, '.get() to non-existent id should error');
+    }
   }).timeout(300000);
 });
