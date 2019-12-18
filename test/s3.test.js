@@ -18,8 +18,7 @@ _describe('feathers-blob-store-s3', () => {
     });
   });
 
-  it('basic functionality', () => {
-    assert.strictEqual(typeof BlobService, 'function', 'exports factory function');
+  it('service operations on S3 storage', () => {
     const store = BlobService({
       Model: blobStore
     });
@@ -54,8 +53,7 @@ _describe('feathers-blob-store-s3', () => {
     });
   });
 
-  it('basic functionality with custom id', () => {
-    assert.strictEqual(typeof BlobService, 'function', 'exports factory function');
+  it('service operations on S3 storage with custom id', () => {
     const store = BlobService({
       Model: blobStore
     });
@@ -90,4 +88,39 @@ _describe('feathers-blob-store-s3', () => {
       );
     });
   });
+
+  it('service operations on S3 storage with a large binary file from a buffer', () => {
+    const store = BlobService({
+      Model: blobStore
+    });
+
+    const content = Buffer.alloc(0.01 * 1024 * 1024); // 20Mb
+    const contentHash = bufferToHash(content);
+    const contentType = 'application/octet-stream';
+    const contentUri = getBase64DataURI(content, contentType);
+    const contentExt = 'bin';
+    const contentId = `${contentHash}.${contentExt}`;
+
+    return store.create({ buffer: content, contentType }).then(res => {
+      assert.strictEqual(res.id, contentId);
+      assert.strictEqual(res.uri, contentUri);
+      assert.strictEqual(res.size, content.length);
+
+      // test successful get
+      return store.get(contentId);
+    }).then(res => {
+      assert.strictEqual(res.id, contentId);
+      assert.strictEqual(res.uri, contentUri);
+      assert.strictEqual(res.size, content.length);
+
+      // test successful remove
+      return store.remove(contentId);
+    }).then(res => {
+      assert.deepStrictEqual(res, { id: contentId });
+
+      // test failing get
+      return store.get(contentId)
+        .catch(err => assert.ok(err, '.get() to non-existent id should error'));
+    });
+  }).timeout(300000);
 });
