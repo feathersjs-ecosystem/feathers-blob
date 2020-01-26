@@ -75,7 +75,7 @@
     "body-parser": "^1.19.0",
     "fs-blob-store": "^5.2.1",
     "istanbul": "^1.1.0-alpha.1",
-    "mocha": "^6.0.0",
+    "mocha": "^7.0.1",
     "s3-blob-store": "^4.1.0",
     "semistandard": "^14.0.1",
     "superagent": "^5.1.0"
