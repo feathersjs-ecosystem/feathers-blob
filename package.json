@@ -39,8 +39,9 @@
     "release:minor": "npm version minor && npm publish",
     "release:major": "npm version major && npm publish",
     "lint": "semistandard --fix",
+    "dtslint": "dtslint types",
     "mocha": "mocha --opts mocha.opts",
-    "test": "npm run lint && npm run coverage",
+    "test": "npm run lint && npm run coverage && npm run dtslint",
     "example": "babel-node examples/app",
     "coverage": "istanbul cover node_modules/mocha/bin/_mocha -- --opts mocha.opts"
   },
@@ -52,6 +53,7 @@
   "directories": {
     "lib": "lib"
   },
+  "types": "types",
   "greenkeeper": {
     "ignore": [
       "aws-sdk"
@@ -68,11 +70,12 @@
   },
   "devDependencies": {
     "@feathersjs/client": "^4.3.10",
-    "@feathersjs/feathers": "^4.3.10",
     "@feathersjs/express": "^4.3.10",
+    "@feathersjs/feathers": "^4.3.10",
     "abstract-blob-store": "^3.2.0",
     "aws-sdk": "^2.350.0",
     "body-parser": "^1.19.0",
+    "dtslint": "^3.5.2",
     "fs-blob-store": "^5.2.1",
     "istanbul": "^1.1.0-alpha.1",
     "mocha": "^7.0.1",
