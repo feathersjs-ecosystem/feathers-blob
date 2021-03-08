@@ -106,7 +106,8 @@ describe('feathers-blob-store-basic', () => {
   it('service operations with buffer output', async () => {
     const store = BlobService({
       Model: blobStore,
-      returnBuffer: true
+      returnBuffer: true,
+      returnUri: false
     });
 
     let res = await store.create({ buffer: content, contentType });
@@ -119,6 +120,37 @@ describe('feathers-blob-store-basic', () => {
     res = await store.get(contentId);
     assert.strictEqual(res.id, contentId);
     assert.strictEqual(res.buffer.equals(content), true);
+    assert.strictEqual(res.uri, undefined);
+    assert.strictEqual(res.size, content.length);
+
+    // test successful remove
+    res = await store.remove(contentId);
+    assert.deepStrictEqual(res, { id: contentId });
+
+    try {
+      // test failing get
+      await store.get(contentId);
+    } catch (err) {
+      assert.ok(err, '.get() to non-existent id should error');
+    }
+  });
+
+  it('service operations without uri output', async () => {
+    const store = BlobService({
+      Model: blobStore,
+      returnUri: false
+    });
+
+    let res = await store.create({ buffer: content, contentType });
+    assert.strictEqual(res.id, contentId);
+    assert.strictEqual(res.buffer, undefined);
+    assert.strictEqual(res.uri, undefined);
+    assert.strictEqual(res.size, content.length);
+
+    // test successful get
+    res = await store.get(contentId);
+    assert.strictEqual(res.id, contentId);
+    assert.strictEqual(res.buffer, undefined);
     assert.strictEqual(res.uri, undefined);
     assert.strictEqual(res.size, content.length);
 
