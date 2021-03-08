@@ -25,10 +25,14 @@ Also install a [`abstract-blob-store` compatible module](https://github.com/maxo
 
 - `options.Model` is an instantiated interface [that implements the `abstract-blob-store` API](https://github.com/maxogden/abstract-blob-store#api)
 - `options.id` is a string 'key' for the blob identifier.
-- `returnUri` defaults to `true` and indicates if the service output a data URI on create/get operations 
-- `returnBuffer` set it to `true` if you only want a buffer output instead of a data URI on create/get operations 
+- `returnUri` defaults is `true`, set it to `false` to remove it from output.
+- `returnBuffer` defaults is `false` , set it to `true` to return buffer in the output. 
 
-**Tip**: `returnUri`/`returnBuffer` are mutually exclusive. If you need both extract the buffer from the data URI on the client-side to avoid transferring the data twice over the wire.
+**Tip**: `returnUri`/`returnBuffer` are mutually exclusive.
+
+If you only want a buffer output instead of a data URI on create/get operations, you need to set `returnBuffer` to be `true`, also to set `retuarnUri` to be `false`.
+
+If you need both, use the default options, then extract the buffer from the data URI on the client-side to avoid transferring the data twice over the wire.
 
 ### `blobService.create(body, params)`
 
@@ -48,8 +52,8 @@ returns output 'data' of the form:
 ```js
 {
   [this.id]: `${hash(content)}.${extension(contentType)}`,
-  uri: body.uri, // When returnUri options is set
-  buffer: body.buffer, // When returnBuffer options is set
+  uri: body.uri, // When returnUri options is set true
+  buffer: body.buffer, // When returnBuffer options is set true
   size: length(content)
 }
 ```
