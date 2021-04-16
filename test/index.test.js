@@ -35,11 +35,13 @@ describe('feathers-blob-store-basic', () => {
     assert.strictEqual(res.id, contentId);
     assert.strictEqual(res.uri, contentUri);
     assert.strictEqual(res.size, content.length);
+    assert.strictEqual(res.contentType, contentType);
     // test successful get
     res = await store.get(contentId);
     assert.strictEqual(res.id, contentId);
     assert.strictEqual(res.uri, contentUri);
     assert.strictEqual(res.size, content.length);
+    assert.strictEqual(res.contentType, contentType);
 
     // test successful remove
     res = await store.remove(contentId);
@@ -58,12 +60,14 @@ describe('feathers-blob-store-basic', () => {
     assert.strictEqual(res.id, contentId);
     assert.strictEqual(res.uri, contentUri);
     assert.strictEqual(res.size, content.length);
+    assert.strictEqual(res.contentType, contentType);
 
     // test successful get
     res = await store.get(contentId);
     assert.strictEqual(res.id, contentId);
     assert.strictEqual(res.uri, contentUri);
     assert.strictEqual(res.size, content.length);
+    assert.strictEqual(res.contentType, contentType);
 
     // test successful remove
     res = await store.remove(contentId);
@@ -84,12 +88,14 @@ describe('feathers-blob-store-basic', () => {
     assert.strictEqual(res.id, customId);
     assert.strictEqual(res.uri, contentUri);
     assert.strictEqual(res.size, content.length);
+    assert.strictEqual(res.contentType, contentType);
 
     // test successful get
     res = await store.get(customId);
     assert.strictEqual(res.id, customId);
     assert.strictEqual(res.uri, contentUri);
     assert.strictEqual(res.size, content.length);
+    assert.strictEqual(res.contentType, contentType);
 
     // test successful remove
     res = await store.remove(customId);
@@ -115,6 +121,7 @@ describe('feathers-blob-store-basic', () => {
     assert.strictEqual(res.buffer.equals(content), true);
     assert.strictEqual(res.uri, undefined);
     assert.strictEqual(res.size, content.length);
+    assert.strictEqual(res.contentType, contentType);
 
     // test successful get
     res = await store.get(contentId);
@@ -122,6 +129,7 @@ describe('feathers-blob-store-basic', () => {
     assert.strictEqual(res.buffer.equals(content), true);
     assert.strictEqual(res.uri, undefined);
     assert.strictEqual(res.size, content.length);
+    assert.strictEqual(res.contentType, contentType);
 
     // test successful remove
     res = await store.remove(contentId);
@@ -146,6 +154,7 @@ describe('feathers-blob-store-basic', () => {
     assert.strictEqual(res.buffer, undefined);
     assert.strictEqual(res.uri, undefined);
     assert.strictEqual(res.size, content.length);
+    assert.strictEqual(res.contentType, contentType);
 
     // test successful get
     res = await store.get(contentId);
@@ -153,6 +162,7 @@ describe('feathers-blob-store-basic', () => {
     assert.strictEqual(res.buffer, undefined);
     assert.strictEqual(res.uri, undefined);
     assert.strictEqual(res.size, content.length);
+    assert.strictEqual(res.contentType, contentType);
 
     // test successful remove
     res = await store.remove(contentId);
@@ -176,12 +186,14 @@ describe('feathers-blob-store-basic', () => {
     assert.strictEqual(res._id, contentId);
     assert.strictEqual(res.uri, contentUri);
     assert.strictEqual(res.size, content.length);
+    assert.strictEqual(res.contentType, contentType);
 
     // test successful get
     res = await store.get(contentId);
     assert.strictEqual(res._id, contentId);
     assert.strictEqual(res.uri, contentUri);
     assert.strictEqual(res.size, content.length);
+    assert.strictEqual(res.contentType, contentType);
 
     // test successful remove
     res = await store.remove(contentId);
@@ -202,12 +214,14 @@ describe('feathers-blob-store-basic', () => {
     assert.strictEqual(res.id, customId);
     assert.strictEqual(res.uri, unknownContentUri);
     assert.strictEqual(res.size, content.length);
+    assert.strictEqual(res.contentType, 'application/octet-stream');
 
     // test successful get
     res = await store.get(customId);
     assert.strictEqual(res.id, customId);
     assert.strictEqual(res.uri, unknownContentUri);
     assert.strictEqual(res.size, content.length);
+    assert.strictEqual(res.contentType, 'application/octet-stream');
 
     // test successful remove
     res = await store.remove(customId);
@@ -228,12 +242,14 @@ describe('feathers-blob-store-basic', () => {
     assert.strictEqual(res.id, customId);
     assert.strictEqual(res.uri, unknownContentUri);
     assert.strictEqual(res.size, content.length);
+    assert.strictEqual(res.contentType, 'application/octet-stream');
 
     // test successful get
     res = await store.get(customId);
     assert.strictEqual(res.id, customId);
     assert.strictEqual(res.uri, unknownContentUri);
     assert.strictEqual(res.size, content.length);
+    assert.strictEqual(res.contentType, 'application/octet-stream');
 
     // test successful remove
     res = await store.remove(customId);
@@ -269,12 +285,14 @@ describe('feathers-blob-store-basic', () => {
       assert.strictEqual(res.id, contentId);
       assert.strictEqual(res.uri, contentUri);
       assert.strictEqual(res.size, content.length);
+      assert.strictEqual(res.contentType, contentType);
 
       // test successful get
       res = await service.get(contentId);
       assert.strictEqual(res.id, contentId);
       assert.strictEqual(res.uri, contentUri);
       assert.strictEqual(res.size, content.length);
+      assert.strictEqual(res.contentType, contentType);
 
       // test successful remove
       res = await service.remove(contentId);
