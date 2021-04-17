@@ -34,12 +34,14 @@ _describe('feathers-blob-store-s3', () => {
     assert.strictEqual(res.id, contentId);
     assert.strictEqual(res.uri, contentUri);
     assert.strictEqual(res.size, content.length);
+    assert.strictEqual(res.contentType, contentType);
 
     // test successful get
     res = await store.get(contentId);
     assert.strictEqual(res.id, contentId);
     assert.strictEqual(res.uri, contentUri);
     assert.strictEqual(res.size, content.length);
+    assert.strictEqual(res.contentType, contentType);
 
     // test successful remove
     res = await store.remove(contentId);
@@ -69,12 +71,14 @@ _describe('feathers-blob-store-s3', () => {
     assert.strictEqual(res.id, contentId);
     assert.strictEqual(res.uri, contentUri);
     assert.strictEqual(res.size, content.length);
+    assert.strictEqual(res.contentType, contentType);
 
     // test successful get
     res = await store.get(contentId);
     assert.strictEqual(res.id, contentId);
     assert.strictEqual(res.uri, contentUri);
     assert.strictEqual(res.size, content.length);
+    assert.strictEqual(res.contentType, contentType);
 
     // test successful remove
     res = await store.remove(contentId);
@@ -104,12 +108,14 @@ _describe('feathers-blob-store-s3', () => {
     assert.strictEqual(res.id, contentId);
     assert.strictEqual(res.uri, contentUri);
     assert.strictEqual(res.size, content.length);
+    assert.strictEqual(res.contentType, contentType);
 
     // test successful get
     res = await store.get(contentId);
     assert.strictEqual(res.id, contentId);
     assert.strictEqual(res.uri, contentUri);
     assert.strictEqual(res.size, content.length);
+    assert.strictEqual(res.contentType, contentType);
 
     // test successful remove
     res = await store.remove(contentId);
