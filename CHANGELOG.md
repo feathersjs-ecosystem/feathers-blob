@@ -1,5 +1,18 @@
 # Changelog
 
+## [v2.5.0](https://github.com/feathersjs-ecosystem/feathers-blob/tree/v2.5.0) (2021-04-25)
+
+[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-blob/compare/v2.4.0...v2.5.0)
+
+**Closed issues:**
+
+- Could we have the contentType in the create result ? [\#83](https://github.com/feathersjs-ecosystem/feathers-blob/issues/83)
+
+**Merged pull requests:**
+
+- Add contentType in get / create response [\#85](https://github.com/feathersjs-ecosystem/feathers-blob/pull/85) ([mdartic](https://github.com/mdartic))
+- Move CI to GitHub action [\#84](https://github.com/feathersjs-ecosystem/feathers-blob/pull/84) ([daffl](https://github.com/daffl))
+
 ## [v2.4.0](https://github.com/feathersjs-ecosystem/feathers-blob/tree/v2.4.0) (2021-04-15)
 
 [Full Changelog](https://github.com/feathersjs-ecosystem/feathers-blob/compare/v2.3.0...v2.4.0)
