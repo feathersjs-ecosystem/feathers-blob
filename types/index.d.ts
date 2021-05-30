@@ -30,6 +30,7 @@ interface CreateBufferBody {
 
 declare namespace feathersBlob {
   interface InitOptions {
+    returnUri?: boolean;
     returnBuffer?: boolean;
     Model: AbstractBlobStore;
     id?: string;
