@@ -62,6 +62,20 @@ returns output `data` of the same form as `create`.
 
 ### `blobService.remove(id, params)`
 
+#### Params:
+
+Query: 
+
+ - `VersionId` (string): Version ID of document to access if using a versioned s3 bucket
+
+Example: 
+
+```js 
+blobService.get('my-file.pdf', {
+  query: {VersionId: 'xslkdfjlskdjfskljf.sdjfdkjfkdjfd'},
+})
+```
+
 ## Example
 
 ```js
@@ -113,6 +127,11 @@ app.service('upload').before({
 
 For a more complete example, see [examples/app](./examples/app.js) which can be run with `npm run example`.
 
+## Tests
+
+Tests can be run by installing the node modules and running `npm run test`. 
+
+To test the S3 read/write capabilities set the environmental variable `S3_BUCKET` to the name of a bucket you have read/write access to. Enable the versioning functionality on the bucket. 
 
 ## License
 
