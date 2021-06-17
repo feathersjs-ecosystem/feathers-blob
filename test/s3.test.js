@@ -9,12 +9,13 @@ const _describe = process.env.S3_BUCKET ? describe : describe.skip;
 
 _describe('feathers-blob-store-s3', () => {
   let s3, blobStore;
+  const bucket = process.env.S3_BUCKET;
 
   before(() => {
     s3 = new aws.S3();
     blobStore = FsBlobStore({
       client: s3,
-      bucket: process.env.S3_BUCKET
+      bucket: bucket
     });
   });
 
@@ -128,4 +129,47 @@ _describe('feathers-blob-store-s3', () => {
       assert.ok(err, '.get() to non-existent id should error');
     }
   }).timeout(300000);
+
+  it('service operations on S3 storage using VersionId and a versioned bucket', async () => {
+    const store = BlobService({
+      Model: blobStore
+    });
+
+    const content = Buffer.from('hello world!');
+    const contentType = 'text/plain';
+    const contentUri = getBase64DataURI(content, contentType);
+    const id = 'versioned_test.txt';
+
+    await store.create({ id, uri: contentUri });
+
+    // get the version ID for the version we just created (assuming this is a versioned bucket)
+    const firstVersion = await new Promise(function (resolve, reject) {
+      blobStore.s3.listObjectVersions({
+        Prefix: id,
+        Bucket: bucket
+      }, function (err, data) {
+        if (err) {
+          reject(err);
+        }
+        const latestVersion = data.Versions.find(function (version) {
+          return version.IsLatest;
+        });
+        resolve(latestVersion.VersionId);
+      });
+    });
+
+    const content2 = Buffer.from('hello world v2');
+    const contentUri2 = getBase64DataURI(content2, contentType);
+    await store.create({ id, uri: contentUri2 });
+
+    const resGet1 = await store.get(id, {
+      query: { VersionId: firstVersion }
+    }); // the first version is null
+    const resGet2 = await store.get(id); // the default version is the latest
+
+    assert.strictEqual(resGet1.uri, contentUri);
+    assert.strictEqual(resGet2.uri, contentUri2);
+
+
+  });
 });
