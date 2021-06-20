@@ -1,5 +1,22 @@
 # Changelog
 
+## [v2.6.0](https://github.com/feathersjs-ecosystem/feathers-blob/tree/v2.6.0) (2021-06-20)
+
+[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-blob/compare/v2.5.0...v2.6.0)
+
+**Fixed bugs:**
+
+- Object which key contains '/' cannot be retrieved by REST on S3 [\#70](https://github.com/feathersjs-ecosystem/feathers-blob/issues/70)
+
+**Closed issues:**
+
+- Route.post\(\) requires a callback function but got a Object [\#86](https://github.com/feathersjs-ecosystem/feathers-blob/issues/86)
+
+**Merged pull requests:**
+
+- feat\(s3\): add support for fetching versioned bucket items [\#88](https://github.com/feathersjs-ecosystem/feathers-blob/pull/88) ([roemhildtg](https://github.com/roemhildtg))
+- Added missing property of InitOptions [\#87](https://github.com/feathersjs-ecosystem/feathers-blob/pull/87) ([Nuran-Jafarov](https://github.com/Nuran-Jafarov))
+
 ## [v2.5.0](https://github.com/feathersjs-ecosystem/feathers-blob/tree/v2.5.0) (2021-04-25)
 
 [Full Changelog](https://github.com/feathersjs-ecosystem/feathers-blob/compare/v2.4.0...v2.5.0)
