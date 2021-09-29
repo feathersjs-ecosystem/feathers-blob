@@ -393,8 +393,7 @@ describe('feathers-blob-store-basic', () => {
 
       try {
         // test failing get
-        const result = await service.get(contentId);
-        console.log(result);
+        await service.get(contentId);
       } catch (err) {
         assert.ok(err, '.get() to non-existent id should error');
         done();
