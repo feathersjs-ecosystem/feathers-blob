@@ -372,13 +372,29 @@ describe('feathers-blob-store-basic', () => {
       assert.strictEqual(res.size, content.length);
       assert.strictEqual(res.contentType, contentType);
 
+      // test create with returnUri turned off without hook (no effect)
+      res = await service.create({ uri: contentUri }, { query: { returnUri: false } });
+      assert.strictEqual(res.uri, contentUri);
+
+      // test create with returnUri turned off with hook (works)
+      const storage = app.service('storage');
+      const { convertQueryOverrides } = require('../lib').hooks;
+      storage.hooks({
+        before: {
+          create: [convertQueryOverrides()]
+        }
+      });
+      res = await service.create({ uri: contentUri }, { query: { returnUri: false } });
+      assert.strictEqual(res.uri, undefined);
+
       // test successful remove
       res = await service.remove(contentId);
       assert.deepStrictEqual(res, { id: contentId });
 
       try {
         // test failing get
-        await service.get(contentId);
+        const result = await service.get(contentId);
+        console.log(result);
       } catch (err) {
         assert.ok(err, '.get() to non-existent id should error');
         done();
