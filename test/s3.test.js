@@ -169,7 +169,5 @@ _describe('feathers-blob-store-s3', () => {
 
     assert.strictEqual(resGet1.uri, contentUri);
     assert.strictEqual(resGet2.uri, contentUri2);
-
-
   });
 });
