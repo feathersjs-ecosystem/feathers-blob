@@ -263,6 +263,84 @@ describe('feathers-blob-store-basic', () => {
     }
   });
 
+  it('service operations overriding returnUri per request', async () => {
+    // default service with returnUri on
+    let store = BlobService({
+      Model: blobStore
+    });
+
+    // disable returnUri for create from buffer
+    let res = await store.create({ buffer: content, contentType }, { query: { returnUri: false } });
+    assert.strictEqual(res.uri, undefined);
+
+    // disable returnUri for create from uri
+    res = await store.create({ uri: contentUri }, { query: { returnUri: false } });
+    assert.strictEqual(res.uri, undefined);
+
+    // disable returnUri for get
+    res = await store.get(contentId, { query: { returnUri: false } });
+    assert.strictEqual(res.uri, undefined);
+
+    // service with default returnBuffer turned off
+    store = BlobService({
+      Model: blobStore,
+      returnBuffer: false,
+      returnUri: false
+    });
+
+    // enable returnUri for create from buffer
+    res = await store.create({ buffer: content, contentType }, { query: { returnUri: true } });
+    assert.strictEqual(res.uri, contentUri);
+
+    // enable returnUri for create from uri
+    res = await store.create({ uri: contentUri }, { query: { returnUri: true } });
+    assert.strictEqual(res.uri, contentUri);
+
+    // enable returnUri for get
+    res = await store.get(contentId, { query: { returnUri: true } });
+    assert.strictEqual(res.uri, contentUri);
+  });
+
+  it('service operations overriding returnBuffer per request', async () => {
+    // service with returnBuffer on
+    let store = BlobService({
+      Model: blobStore,
+      returnBuffer: true,
+      returnUri: false
+    });
+
+    // disable returnBuffer for create from buffer
+    let res = await store.create({ buffer: content, contentType }, { query: { returnBuffer: false } });
+    assert.strictEqual(res.buffer, undefined);
+
+    // disable returnBuffer for create from uri
+    res = await store.create({ uri: contentUri }, { query: { returnBuffer: false } });
+    assert.strictEqual(res.buffer, undefined);
+
+    // disable returnBuffer for get
+    res = await store.get(contentId, { query: { returnBuffer: false } });
+    assert.strictEqual(res.buffer, undefined);
+
+    // service with returnBuffer turned off
+    store = BlobService({
+      Model: blobStore,
+      returnBuffer: false,
+      returnUri: false
+    });
+
+    // enable returnBuffer for create from buffer
+    res = await store.create({ buffer: content, contentType }, { query: { returnBuffer: true } });
+    assert.strictEqual(res.buffer.equals(content), true);
+
+    // enable returnBuffer for create from uri
+    res = await store.create({ uri: contentUri }, { query: { returnBuffer: true } });
+    assert.strictEqual(res.buffer.equals(content), true);
+
+    // enable returnBuffer for get
+    res = await store.get(contentId, { query: { returnBuffer: true } });
+    assert.strictEqual(res.buffer.equals(content), true);
+  });
+
   it('service operations from client', (done) => {
     const blobStore = FsBlobStore(join(__dirname, 'blobs'));
     const store = BlobService({
