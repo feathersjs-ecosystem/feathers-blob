@@ -40,7 +40,7 @@
     "release:major": "npm version major && npm publish",
     "lint": "semistandard --fix",
     "dtslint": "dtslint types",
-    "mocha": "mocha --opts mocha.opts",
+    "mocha": "mocha",
     "test": "npm run lint && npm run coverage && npm run dtslint",
     "example": "babel-node examples/app",
     "coverage": "istanbul cover node_modules/mocha/bin/_mocha -- --opts mocha.opts"
