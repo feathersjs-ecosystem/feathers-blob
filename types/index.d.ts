@@ -50,7 +50,7 @@ declare namespace feathersBlob {
     uri?: string;
     size: number;
     [idParam: string]: any;
-    contentType: string
+    contentType: string;
   }
 
   interface Service {
