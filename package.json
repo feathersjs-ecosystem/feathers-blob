@@ -32,6 +32,13 @@
   "engines": {
     "node": ">= 6"
   },
+  "files": [
+    "CHANGELOG.md",
+    "LICENSE",
+    "README.md",
+    "lib/**",
+    "types/**"
+  ],
   "scripts": {
     "publish": "git push origin --tags && npm run changelog && git push origin",
     "changelog": "github_changelog_generator -u feathersjs-ecosystem -p feathers-blob && git add CHANGELOG.md && git commit -am \"Updating changelog\"",
