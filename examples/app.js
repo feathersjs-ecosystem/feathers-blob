@@ -19,7 +19,7 @@ const blobService = BlobService({
 });
 
 // Create a feathers instance.
-var app = express(feathers())
+const app = express(feathers())
   // Turn on JSON parser for REST services
   .use(express.json())
   // Turn on URL-encoded parser for REST services
